@@ -5,7 +5,12 @@
 @@||白名单仅用于测试.com^
 ||黑名单仅用于测试.com^
 
-
+#🍅小说
+/^https?:\/\/(?!.*(?:fqnovel|douyinpic\.|bytegecko\.|byteimg\.))|(?=.*(?:\bad|lq)).*$/$app=com.dragon.read,important
+#七🦉小说
+/^https?:\/\/(?!.*(?:wtzw\.|qimao\.))|(?=.*(?:ad|cfg|xiaoshuo)).*$/$app=com.kmxs.reader,important
+#小📗社区
+/^https?:\/\/(?!.*coolapk).*$/$app=com.coolapk.market,important
 
 #酷友提议，qq公告
 @@||web.qun.qq.com^$app=com.tencent.mobileqq
