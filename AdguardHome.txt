@@ -244,8 +244,7 @@
 #------------------------------#------------------------------#------------------------------
 
 #酷友提议，qq公告
-@@||web.qun.qq.com^$app=com.tencent.mobileqq
-
+@@||web.qun.qq.com^
 #------------------------------#------------------------------#------------------------------
 @@||taobao.com^$important
 @@||tmall.com^$important
@@ -269,77 +268,8 @@
 ||buildingdoodlesquare.com^
 ||colonistnobilityheroic.com^
 #------------------------------------------------
-#测试去广告网站
-0.0.0.0 adtago.s3.amazonaws.com
-0.0.0.0 analyticsengine.s3.amazonaws.com
-0.0.0.0 analytics.s3.amazonaws.com
-0.0.0.0 pagead2.googlesyndication.com
-0.0.0.0 adservice.google.com
-0.0.0.0 pagead2.googleadservices.com
-0.0.0.0 afs.googlesyndication.com
-0.0.0.0 stats.g.doubleclick.net
-0.0.0.0 ad.doubleclick.net
-0.0.0.0 m.doubleclick.net
-0.0.0.0 ads30.adcolony.com
-0.0.0.0 events3alt.adcolony.com
-0.0.0.0 static.media.net
-0.0.0.0 google-analytics.com
-0.0.0.0 cdn.mouseflow.com
-0.0.0.0 cdn-test.mouseflow.com
-0.0.0.0 freshmarketer.com
-0.0.0.0 claritybt.freshmarketer.com
-0.0.0.0 fwtracks.freshmarketer.com
-0.0.0.0 w1.luckyorange.com
-0.0.0.0 settings.luckyorange.net
-0.0.0.0 sessions.bugsnag.com
-0.0.0.0 api.bugsnag.com
-0.0.0.0 app.bugsnag.com
-0.0.0.0 browser.sentry-cdn.com
-0.0.0.0 static.ads-twitter.com
-0.0.0.0 analytics.pinterest.com
-0.0.0.0 trk.pinterest.com
-0.0.0.0 events.reddit.com
-0.0.0.0 ads-sg.tiktok.com
-
-
 
 #酷安头像
 @@||image.coolapk.com^$important
 @@||avatar.coolapk.com^$important
 @@||b23.tv^
-#q系列
-@@||mp.weixin.qq.com^
-
-#识典古籍
-@@||www.shidianguji.com^
-#番茄小说
-@@||p3-reading-sign.fqnovelpic.com^
-@@||api5-normal-sinfonlinec.fqnovel.com^
-@@||api5-normal-lf.fqnovel.com^
-@@||v*-fq-tts.fqnovelvod.com^
-#酷安
-@@||coolapk.com^
-@@||pp.myapp.com^
-@@||auni.telecome.cn^
-#微信QQ放行
-@@/.*weixin.*/
-@@||wxqcloud.qq.com.cn^
-@@||res.wx.qq.com^
-#汽水音乐
-@@||qishui.com^
-@@||*luna.douyin*.*
-#华为
-@@||developer.huawei.com^
-#七猫
-@@||api-ks.wtzw.com^
-@@||appimg*dbankcdn.com^
-#百度
-@@||imgsrc.baidu.com^
-@@||tb.himg.baidu.com^
-@@||wappass.baidu.com^
-@@||ppui-static-wap.cdn.bcebos.com^
-@@||tieba.baidu.com^
-@@||baidupcs.com^
-@@/^down(pack|app)\.baidu\.com$/
-@@/^(tiebapic|tiebac)\.baidu\.com$/
-
