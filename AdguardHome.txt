@@ -10,27 +10,11 @@
 #------------------------------#------------------------------#------------------------------
 
 
-@@||taobao.com^$important
-@@||tmall.com^$important
+
 @@||jd.com^important
-@@||flyme.cn^$important
-@@||meizu.com^$important
 @@||flydigi.com^
-@@||pv.sohu.com^$important
-/googleads.$~script,domain=~googleads.github.io
-/pagead/lvz?
-||google.com/pagead/
-||static.doubleclick.net^$domain=youtube.com
-||youtube.com/get_midroll_
-||5hz.org^
 @@||000714.xyz^
 @@||blueskyxn.com^
-||topnewsfeeds.net^
-||nbryb.com^
-||superbdolly.com^
-||salutationcheerlessdemote.com^
-||buildingdoodlesquare.com^
-||colonistnobilityheroic.com^
 #------------------------------#------------------------------#------------------------------
 ! AdGuard Home DNS 规则（四站测试域名合并去重版）
 ! ===== I. Ads（广告） =====
