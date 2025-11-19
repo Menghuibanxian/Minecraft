@@ -1,0 +1,3558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft服务器|我的世界服务器|Minecraft 股东大会官网</title>
+    <meta name="description" content="Minecraft 股东大会 - 一个你从没体验过的生存+王朝+官位+的MC服务器" />
+    <!-- 核心配置 -->
+    <script>
+    window.CONFIG = {
+        STATIC_PATHS: {
+            statsCounter: 'static/js/stats-counter.js',
+            mainAsync: 'static/js/main-async.js'
+        }
+    };
+    </script>
+
+    <!-- 第三方资源 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // 检测Tailwind是否加载成功
+        if (typeof tailwind === 'undefined') {
+            const script = document.createElement('script');
+            script.src = 'static/js/tailwind-fallback.min.js';
+            document.head.appendChild(script);
+        }
+    </script>
+    <script src="static/js/link-config.js"></script>
+    <script src="static/js/audio-loader.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" crossorigin="anonymous" rel="stylesheet">
+    
+    <!-- Critical CSS (inlined) -->
+    <style>
+        /* 统计数据相关的关键样式 - 优先加载 */
+        .bg-minecraft {
+            background-color: #54C754 !important;
+        }
+        .text-white {
+            color: white !important;
+        }
+        .rounded-2xl {
+            border-radius: 1rem;
+        }
+        .p-12 {
+            padding: 3rem;
+        }
+        .shadow-2xl {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s ease-out;
+        }
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .grid {
+            display: grid;
+        }
+        .grid-cols-1 {
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+        .md\:grid-cols-4 {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+        .gap-12 {
+            gap: 3rem;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .mb-6 {
+            margin-bottom: 1.5rem;
+        }
+        .text-5xl {
+            font-size: 3.75rem;
+        }
+        .font-bold {
+            font-weight: 700;
+        }
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+        .text-xl {
+            font-size: 1.25rem;
+        }
+        .lnr {
+            font-family: 'Linearicons-Free';
+            speak: none;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .lnr-users:before { content: "\e83b"; }
+        .lnr-sun:before { content: "\e848"; }
+        .lnr-heart:before { content: "\e829"; }
+        .lnr-rocket:before { content: "\e868"; }
+    </style>
+    
+
+
+<!-- Preload critical resources -->
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="static/js/link-config.js" as="script" importance="high">
+    <link rel="preload" href="static/js/stats-counter.js" as="script" importance="high">
+    <link rel="preload" href="static/js/audio-loader.js" as="script" importance="high">
+    
+    <script>
+        // 等待LINK_CONFIG加载完成后预加载hero.png
+        function preloadHeroImage() {
+            if (typeof window.LINK_CONFIG !== 'undefined' && window.LINK_CONFIG.links && window.LINK_CONFIG.links.length > 0) {
+                // 查找hero.png的原始链接配置项
+                const heroConfig = window.LINK_CONFIG.links.find(item => 
+                    item.original && item.original.includes('hero.png')
+                );
+                
+                if (heroConfig) {
+                    // 创建预加载链接标签
+                    const preloadLink = document.createElement('link');
+                    preloadLink.rel = 'preload';
+                    preloadLink.href = heroConfig.accelerated;
+                    preloadLink.as = 'image';
+                    preloadLink.importance = 'high';
+                    document.head.appendChild(preloadLink);
+                }
+            } else {
+                // 如果LINK_CONFIG未加载，稍后重试
+                setTimeout(preloadHeroImage, 100);
+            }
+        }
+        
+        // 页面加载时预加载hero.png
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', preloadHeroImage);
+        } else {
+            preloadHeroImage();
+        }
+    </script>
+    <link rel="preload" href="static/js/music-player-enhanced.js" as="script" importance="high">
+    
+    <!-- Preload CSS files -->
+    <link rel="preload" href="static/css/bootstrap.min.css" as="style" onload="this.rel='stylesheet'">
+    <!-- 删除了重复的延迟加载bootstrap.min.css引用 -->
+    <link rel="preload" href="static/css/select2.min.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="static/css/owl.carousel.min.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="static/css/lightcase.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="static/css/fonts.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="static/css/style.min.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="static/css/responsive-fix.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="static/css/icon-font.min.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="static/css/icons.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" as="style" onload="this.rel='stylesheet'">
+    
+    <!-- 字体预加载 -->
+    <link rel="preload" href="static/fonts/qw3azqnved7rkgkxtqiqx5eudxx4.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="static/fonts/mem8yags126mizpba-ufvz0b.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Defer non-critical CSS -->
+    <!-- bootstrap.min.css已通过preload加载，不再重复延迟加载 -->
+    <link rel="stylesheet" href="static/css/select2.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="static/css/owl.carousel.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="static/css/lightcase.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="static/css/fonts.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="static/css/style.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="static/css/responsive-fix.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="static/css/icon-font.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="static/css/icons.css" media="print" onload="this.media='all'">
+    
+    <!-- Fallback for browsers that don't support onload -->
+    <noscript>
+        <link rel="stylesheet" href="static/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="static/css/select2.min.css" />
+        <link rel="stylesheet" href="static/css/owl.carousel.min.css" />
+        <link rel="stylesheet" href="static/css/lightcase.css" />
+        <link rel="stylesheet" href="static/css/fonts.css" />
+        <link rel="stylesheet" href="static/css/style.min.css" />
+        <link rel="stylesheet" href="static/css/responsive-fix.css" />
+        <link rel="stylesheet" href="static/css/icon-font.min.css" />
+        <link rel="stylesheet" href="static/css/icons.css" />
+    </noscript>
+    
+    <style>
+        /* 音乐播放器样式 */
+        .music-player {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 320px;
+            height: 60px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        /* 响应式设计 - 移动设备适配 */
+        @media (max-width: 768px) {
+            .music-player {
+                width: 50px !important; /* 与置顶按钮大小一致 */
+                height: 50px !important;
+                bottom: 20px !important;
+                right: 20px !important;
+                padding: 0 !important;
+                justify-content: center !important;
+                align-items: center !important;
+                border-radius: 50% !important;
+                position: fixed !important;
+                z-index: 1000 !important;
+                background: rgba(255,255,255,0.95) !important;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
+                overflow: hidden !important;
+            }
+            
+            /* 简洁音乐播放器特定响应式样式 */
+            #musicPlayer #songTitle {
+                display: none !important;
+            }
+            
+            #musicPlayer input[type="range"] {
+                display: none !important;
+            }
+            
+            #musicPlayer #timeDisplay {
+                display: none !important;
+            }
+            
+            /* 强化专辑封面居中，覆盖内联样式 */
+            #musicPlayer #albumCoverBtn {
+                width: 40px !important; /* 调整专辑封面按钮大小以适应播放器 */
+                height: 40px !important;
+                margin: 0 !important;
+                margin-right: 0 !important;
+                margin-left: 0 !important;
+                padding: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                position: absolute !important;
+                border-radius: 50% !important;
+                border: none !important;
+                flex-shrink: 0 !important;
+                overflow: hidden !important;
+                left: 50% !important;
+                top: 50% !important;
+                transform: translate(-50%, -50%) !important;
+            }
+            
+            #musicPlayer #albumImage {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+                border-radius: 50% !important;
+                display: block !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            /* 确保播放覆盖层也居中 */
+            #musicPlayer #playOverlay {
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                background: rgba(0,0,0,0.4) !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                font-size: 16px !important; /* 调整字体大小 */
+                color: white !important;
+                border-radius: 50% !important;
+                line-height: 1 !important;
+                text-align: center !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            
+            #musicPlayer #modeBtn,
+            #musicPlayer #listBtn {
+                display: none !important;
+            }
+        }
+        
+        /* 公告样式 - 确保正确的层级关系 */
+        #announcement-modal {
+            /* 移除backdrop-filter，使用半透明背景替代 */
+            background: rgba(0, 0, 0, 0.7) !important;
+            z-index: 9999 !important; /* 确保公告弹窗显示在最上层 */
+            will-change: opacity;
+        }
+        
+        #announcement-modal .modal-content-wrapper {
+            /* 使用transform和opacity优化整体动画性能 */
+            will-change: transform, opacity;
+        }
+        
+        #announcement-modal .notice-content {
+            line-height: 1.6;
+        }
+        
+        #announcement-modal .notice-content p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        #announcement-modal .notice-content strong {
+            font-weight: 600;
+        }
+        
+        /* 公告段落样式 - 优化动画性能 */
+        .announcement-paragraph {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.5s ease-in-out forwards;
+            will-change: transform, opacity;
+        }
+        
+        /* 延迟相邻段落的动画，减少同时动画的元素数量 */
+        .announcement-paragraph:nth-child(1) { animation-delay: 0.1s; }
+        .announcement-paragraph:nth-child(2) { animation-delay: 0.2s; }
+        .announcement-paragraph:nth-child(3) { animation-delay: 0.3s; }
+        .announcement-paragraph:nth-child(4) { animation-delay: 0.4s; }
+        .announcement-paragraph:nth-child(n+5) { animation-delay: 0.5s; }
+        
+        /* 红色公告样式 */
+        .announcement-red {
+            color: #d93025;
+        }
+        
+        /* 淡入动画 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 滚动条样式 */
+        #announcement-modal .overflow-y-auto::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        #announcement-modal .overflow-y-auto::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        
+        #announcement-modal .overflow-y-auto::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+        
+        #announcement-modal .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+            background: #a1a1a1;
+        }
+        
+        /* 置顶按钮响应式调整 */
+        @media (max-width: 768px) {
+            #backToTop {
+                right: 90px !important; /* 与音乐播放器水平排列 */
+                bottom: 20px !important;
+                width: 50px !important;
+                height: 50px !important;
+            }
+        }
+        
+        /* 播放列表弹窗响应式调整 */
+        @media (max-width: 768px) {
+            #playlistModal {
+                right: 20px !important;
+                left: 20px !important;
+                width: calc(100% - 40px) !important;
+                bottom: 110px !important;
+            }
+        }
+        
+        .music-player:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.2);
+        }
+        
+        /* 进度条样式 */
+        #progressBar, #volumeBar {
+            -webkit-appearance: none;
+            appearance: none;
+            cursor: pointer;
+        }
+        
+        /* 复制成功悬浮提示样式 */
+        .copy-tip {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .copy-tip.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) translateY(-20px);
+        }
+        
+        #progressBar::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            background: #666;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* 确保进度条在其他浏览器上也能正常工作 */
+        #progressBar::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            background: #666;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+        }
+        
+        #volumeBar::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 8px;
+            height: 8px;
+            background: #666;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        /* 播放列表样式 */
+        #playlistModal::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        #playlistModal::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 2px;
+        }
+        
+        #playlistModal::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 2px;
+        }
+        
+        #playlistModal::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        /* 按钮悬停效果 */
+        .music-player button:hover {
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        
+        .music-player button:active {
+            transform: scale(0.95);
+        }
+        
+        /* 滚动动画效果 */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s ease-out;
+        }
+        
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* 增大基础字体大小 */
+        body {
+            font-size: 18px !important;
+            line-height: 1.6 !important;
+        }
+        
+        /* 增大标题字体 */
+        h1 { font-size: 4rem !important; }
+        h2 { font-size: 3rem !important; }
+        h3 { font-size: 2rem !important; }
+        h4 { font-size: 1.5rem !important; }
+        
+        /* 增大段落字体 */
+        p { font-size: 18px !important; }
+        
+        /* 增大导航字体 */
+        .nav-link { font-size: 18px !important; }
+        
+        /* 增大按钮字体 */
+        .btn { font-size: 18px !important; padding: 15px 30px !important; }
+        
+        /* 增大图标尺寸 */
+        .lnr { font-size: 3rem !important; }
+        
+        /* 增大间距 */
+        .container { padding-left: 2rem !important; padding-right: 2rem !important; }
+        section { padding: 4rem 0 !important; }
+        
+        /* 增大图片尺寸 */
+        .rounded-full { width: 180px !important; height: 180px !important; }
+        
+        /* 自定义颜色 */
+        .text-minecraft { color: #54C754 !important; }
+        .bg-minecraft { background-color: #54C754 !important; }
+        .border-minecraft { border-color: #54C754 !important; }
+        
+        /* 动画效果 */
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* 捐赠二维码效果 */
+        .donate-zoom-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .donate-zoom-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            z-index: 10;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .donate-zoom-wrapper:hover .donate-zoom-icon {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .donate-zoom-icon:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        .donate-zoom-icon span {
+            background: #fff;
+            border-radius: 50%;
+            padding: 20px;
+            font-size: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        /* 播放按钮动画 */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(84, 199, 84, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(84, 199, 84, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(84, 199, 84, 0);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+    <!-- 加密和反爬虫保护措施 -->
+    <script>
+        // 防止控制台调试
+        (function() {
+            // 检测是否在控制台中打开
+            function detectDevTools() {
+                // 改进的调试检测方法，结合多种检测手段以提高准确性
+                let isDevToolsOpen = false;
+                
+                // 方法1: 控制台大小检测（更可靠）
+                const consoleHeight = window.outerHeight - window.innerHeight;
+                if (consoleHeight > 100) { // 如果控制台高度超过100px
+                    isDevToolsOpen = true;
+                }
+                
+                // 方法2: 性能计时作为辅助检测
+                const threshold = 160;
+                const start = performance.now();
+                
+                // 减少循环次数，减少对性能的影响
+                for (let i = 0; i < 10000; i++) {
+                    // 执行一些实际计算，而不是空循环
+                    Math.sqrt(i);
+                }
+                
+                const end = performance.now();
+                const executionTime = end - start;
+                
+                // 只在控制台高度检测结果为真且执行时间超过阈值时才判定为调试
+                // 并且增加设备性能自适应逻辑
+                if (isDevToolsOpen && executionTime > threshold) {
+                    // 根据设备性能调整阈值
+                    const isLowPerformanceDevice = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
+                    const adjustedThreshold = isLowPerformanceDevice ? threshold * 2 : threshold;
+                    
+                    if (executionTime > adjustedThreshold) {
+                        // 检测到调试行为，显示提示而不是直接跳转
+                        console.warn('检测到调试行为');
+                        // 可选：刷新页面或显示提示
+                        // window.location.reload();
+                    }
+                }
+            }
+              
+              // 定期检查
+            setInterval(detectDevTools, 1000);
+        })();
+        
+        /* 允许用户复制内容
+        // 禁用复制、剪切和选择功能已移除
+        */
+        
+        // 禁用拖动
+        document.ondragstart = function() {
+            return false;
+        };
+        
+        // 检测当前域名
+        function checkDomain() {
+            const allowedDomains = ['mc.848880.xyz'];
+            const localDomains = ['localhost', '127.0.0.1', '[::1]'];
+            
+            try {
+                const currentHost = window.location.hostname;
+                
+                // 检查是否是本地域名
+                for (let localDomain of localDomains) {
+                    if (currentHost === localDomain || currentHost.startsWith(localDomain + ':')) {
+                        return true; // 允许本地访问
+                    }
+                }
+                
+                // 检查是否是允许的域名
+                for (let allowedDomain of allowedDomains) {
+                    if (currentHost === allowedDomain || currentHost.endsWith('.' + allowedDomain)) {
+                        return true; // 允许的域名
+                    }
+                }
+                
+                // 不是允许的域名，重定向到空白页或显示提示
+                document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background-color:#f0f0f0;">' +
+                                         '<div style="text-align:center;padding:20px;background-color:white;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.1);">' +
+                                         '<h1 style="color:red;">访问限制</h1>' +
+                                         '<p style="font-size:18px;">该网站仅允许通过指定域名访问</p>' +
+                                         '</div></div>';
+                return false;
+            } catch (e) {
+                console.error('域名检测出错:', e);
+                return true; // 出错时默认允许访问
+            }
+        }
+        
+        // 执行域名检测，本地环境不影响
+        if (!checkDomain()) {
+            // 如果域名不合法，阻止后续脚本执行
+            throw new Error('域名不合法，已停止加载');
+        }
+        
+        // 检测爬虫机器人
+        function detectBot() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            const bots = [
+                'googlebot', 'bingbot', 'yandexbot', 'baiduspider', 'rogerbot',
+                'dotbot', 'twitterbot', 'slurp', 'facebot', 'facebookexternalhit',
+                'ia_archiver', 'ahrefsbot', 'semrushbot', 'crawler', 'spider', 'robot'
+            ];
+            
+            for (let bot of bots) {
+                if (userAgent.indexOf(bot) > -1) {
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+        
+        // 如果检测到机器人，显示友好提示而不是重定向到空白页
+        if (detectBot()) {
+            // 显示机器人检测提示
+            document.body.innerHTML = `
+                <div style="text-align: center; padding: 50px;">
+                    <h1>访问限制</h1>
+                    <p>我们检测到异常访问模式，请使用正常浏览器访问。</p>
+                </div>
+            `;
+        }
+        
+        // 内容混淆加密函数
+        function encrypt(text) {
+            let encrypted = '';
+            for (let i = 0; i < text.length; i++) {
+                encrypted += String.fromCharCode(text.charCodeAt(i) + 3);
+            }
+            return encrypted;
+        }
+        
+        function decrypt(text) {
+            let decrypted = '';
+            for (let i = 0; i < text.length; i++) {
+                decrypted += String.fromCharCode(text.charCodeAt(i) - 3);
+            }
+            return decrypted;
+        }
+        
+        // 混淆DOM元素
+        function obfuscateDOM() {
+            const elements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, li, a');
+            elements.forEach(el => {
+                if (el.innerText && el.innerText.trim().length > 0 && !el.classList.contains('no-obfuscate')) {
+                    try {
+                        const encrypted = encrypt(el.innerText);
+                        el.setAttribute('data-encrypted', encrypted);
+                        el.innerText = encrypted;
+                    } catch (e) {
+                        console.error('混淆失败:', e);
+                    }
+                }
+            });
+        }
+        
+        // 解密DOM元素
+        function deobfuscateDOM() {
+            const elements = document.querySelectorAll('[data-encrypted]');
+            elements.forEach(el => {
+                try {
+                    const encrypted = el.getAttribute('data-encrypted');
+                    const decrypted = decrypt(encrypted);
+                    el.innerText = decrypted;
+                    el.removeAttribute('data-encrypted');
+                } catch (e) {
+                    console.error('解密失败:', e);
+                }
+            });
+        }
+        
+        // 移除了DOM混淆功能，解决文字闪烁问题
+    </script>
+    
+    <style>
+        /* 移动端触摸状态和鼠标悬停处理 */
+        #enter-server-btn.active-touch,
+        #enter-server-btn:hover {
+            background-color: white !important;
+            color: #374151 !important;
+            transform: scale(0.98);
+            transition: all 0.1s ease;
+        }
+        
+        /* 移动端兼容性处理：强制移除active状态 */
+        #enter-server-btn:active {
+            background-color: transparent !important;
+            color: white !important;
+        }
+        
+        /* 确保触摸结束后状态正确恢复 */
+        #enter-server-btn:not(.active-touch) {
+            background-color: transparent;
+            color: white;
+            transform: scale(1);
+        }
+        
+        /* 移动端触摸反馈优化 */
+        @media (max-width: 768px) {
+            #enter-server-btn {
+                -webkit-tap-highlight-color: transparent;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                user-select: none;
+            }
+            
+            #enter-server-btn:focus {
+                outline: none;
+            }
+        }
+    </style>
+
+</head>
+<body class="font-inter bg-white text-gray-900">
+    <!-- 复制成功悬浮提示元素 -->
+    <div class="copy-tip">✅ 已复制到剪贴板！</div>
+    <!-- Navigation -->
+    <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white shadow-md border-b border-gray-200 py-3 text-gray-900 backdrop-blur">
+        <div class="container mx-auto px-8 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold flex items-center text-gray-900">
+                Minecraft 股东大会
+            </a>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#home" class="text-sm uppercase tracking-widest font-semibold text-gray-900 hover:text-minecraft transition-colors">主页</a>
+                <a href="#who-we-are" class="text-sm uppercase tracking-widest font-semibold text-gray-900 hover:text-minecraft transition-colors">进服</a>
+                <a href="#blog" class="text-sm uppercase tracking-widest font-semibold text-gray-900 hover:text-minecraft transition-colors">团队</a>
+                <a href="#portfolio" class="text-sm uppercase tracking-widest font-semibold text-gray-900 hover:text-minecraft transition-colors">图片</a>
+                <a href="#pricing" class="text-sm uppercase tracking-widest font-semibold text-gray-900 hover:text-minecraft transition-colors">捐赠</a>
+                <a href="https://qm.qq.com/q/ksMexFgvZe" class="text-sm uppercase tracking-widest font-semibold text-gray-900 hover:text-minecraft transition-colors">加入Q群</a>
+                <a href="https://www.bilibili.com" class="text-sm uppercase tracking-widest font-semibold text-gray-900 hover:text-minecraft transition-colors">客户端下载</a>
+            </nav>
+            <button id="menu-toggle" class="md:hidden text-lg text-gray-900">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 py-4">
+            <div class="container mx-auto px-8 flex flex-col space-y-3">
+                <a href="#home" class="text-sm uppercase tracking-widest font-semibold text-gray-900 hover:text-minecraft transition-colors py-2">主页</a>
+                <a href="#who-we-are" class="text-sm uppercase tracking-widest font-semibold text-gray-900 hover:text-minecraft transition-colors py-2">进服</a>
+                <a href="#blog" class="text-sm uppercase tracking-widest font-semibold text-gray-900 hover:text-minecraft transition-colors py-2">团队</a>
+                <a href="#portfolio" class="text-sm uppercase tracking-widest font-semibold text-gray-900 hover:text-minecraft transition-colors py-2">图片</a>
+                <a href="#pricing" class="text-sm uppercase tracking-widest font-semibold text-gray-900 hover:text-minecraft transition-colors py-2">捐赠</a>
+                <a href="https://qm.qq.com/q/ksMexFgvZe" class="text-sm uppercase tracking-widest font-semibold text-gray-900 hover:text-minecraft transition-colors py-2">加入Q群</a>
+                <a href="https://www.bilibili.com" class="text-sm uppercase tracking-widest font-semibold text-gray-900 hover:text-minecraft transition-colors py-2">客户端下载</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative" style="background-image: url(static/picture/hero.png); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="container mx-auto px-8 py-32 relative z-10">
+            <!-- 公告区域 -->
+            <div id="announcement-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+                <div class="modal-content-wrapper bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4">
+                    <div class="border-b border-gray-200 py-4 px-6 flex justify-between items-center">
+                        <h3 class="text-xl font-semibold text-gray-900" id="announcement-title">⚠️重要公告</h3>
+                        <button id="close-announcement" class="text-gray-500 hover:text-gray-700">
+                            <i class="fa-solid fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="p-6 max-h-[70vh] overflow-y-auto">
+                        <div class="notice-content">
+                            <div id="announcement-body"></div>
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-200 py-4 px-6 flex justify-end space-x-4">
+                        <button id="invisible-button" class="bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 px-6 rounded-lg transition-colors">
+                            我看不见
+                        </button>
+                        <button id="acknowledge-announcement" class="bg-minecraft hover:bg-green-600 text-white font-medium py-2 px-6 rounded-lg transition-colors">
+                            我知道了
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="max-w-5xl mx-auto text-center text-white">
+                <h1 class="mb-12 animate-fade-in opacity-0" style="animation-delay: 0.2s">
+                    这里是 <span class="text-minecraft">Minecraft 股东大会</span>
+                </h1>
+                <p class="text-2xl mb-16 animate-fade-in opacity-0" style="animation-delay: 0.4s">
+                    一个你从没体验过的生电MC服务器
+                </p>
+                <a href="#who-we-are" id="enter-server-btn" class="inline-block border-2 border-white px-12 py-4 text-lg uppercase tracking-widest hover:bg-white hover:text-gray-900 transition-all duration-300 animate-fade-in opacity-0" style="animation-delay: 0.6s; margin-top: 20px;">
+立即进服
+</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who We Are Section -->
+    <section id="who-we-are" class="min-h-screen flex items-center justify-center py-20 bg-white fade-in-up">
+        <div class="container mx-auto px-8">
+            <!-- 上半部分：介绍内容 -->
+            <div class="text-center mb-8 fade-in-up">
+                <h2 class="mb-4">
+                    值得你信赖的 <br>1.12.2-1.20.2 <span class="text-minecraft">Minecraft 股东大会 服务器</span>
+                </h2>
+            </div>
+            
+            <!-- 功能特色网格 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+                <div class="text-center scale-in">
+                    <img src="static/picture/animat-checkmark.gif" alt="专用客户端" class="w-40 h-40 mx-auto rounded-full mb-8">
+                    <h3 class="text-2xl font-medium mb-6">专用客户端提供</h3>
+                    <p class="text-lg mb-6">Minecraft 股东大会提供了专用客户端，使用专用客户端可以体验更多服务器的功能哦~</p>
+                    <a href="https://www.bilibili.com" class="text-minecraft hover:underline text-lg">下载客户端</a>
+                </div>
+                
+                <div class="text-center scale-in">
+                    <img src="static/picture/animat-customize.gif" alt="多元化制作" class="w-40 h-40 mx-auto rounded-full mb-8">
+                    <h3 class="text-2xl font-medium mb-6">多元化制作</h3>
+                    <p class="text-lg mb-6">如果你是一个喜欢生电的玩家，这里是你的不二之选（无红石限制）</p>
+                    <a href="#" class="text-minecraft hover:underline text-lg">加入我们</a>
+                </div>
+                
+                <div class="text-center scale-in">
+                    <img src="static/picture/animat-responsive.gif" alt="专业化保障" class="w-40 h-40 mx-auto rounded-full mb-8">
+                    <h3 class="text-2xl font-medium mb-6">专业化保障</h3>
+                    <p class="text-lg mb-6">服主具有多年开服经验、有专业的技术支持、后台稳定、原创内容、网络保障</p>
+                    <a href="https://qm.qq.com/q/ksMexFgvZe" class="text-minecraft hover:underline text-lg">加入Q群</a>
+                </div>
+            </div>
+            <!-- 服务器地址区域（动态加载的服务器信息） -->
+            <div class="container mx-auto px-8">
+                <div id="server-info-container" class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full mt-12 mb-8 fade-in-up visible">
+                    <!-- 服务器信息将通过JavaScript动态加载 -->
+                </div>
+
+            </div>
+            <!-- 下半部分：统计数据 -->
+            <div class="bg-minecraft text-white rounded-2xl p-12 shadow-2xl scale-in">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12 text-center">
+                    <div>
+                        <i class="lnr lnr-users mb-6"></i>
+                        <div class="text-5xl font-bold mb-4">
+                            <span id="usernumber" class="number" data-from="0" data-to="0" data-refresh-interval="100">X</span>
+                        </div>
+                        <h4 class="text-xl">注册量</h4>
+                    </div>
+                    
+                    <div>
+                        <i class="lnr lnr-sun mb-6"></i>
+                        <div class="text-5xl font-bold mb-4">
+                            <span id="sumdate" class="number" data-from="0" data-to="0" data-refresh-interval="100">X</span>
+                        </div>
+                        <h4 class="text-xl">开服/日</h4>
+                    </div>
+                    
+                    <div>
+                        <i class="lnr lnr-heart mb-6"></i>
+                        <div class="text-5xl font-bold mb-4">
+                            <span id="updatecount" class="number" data-from="0" data-to="0" data-refresh-interval="100">X</span>
+                        </div>
+                        <h4 class="text-xl">更新量</h4>
+                    </div>
+                    
+                    <div>
+                        <i class="lnr lnr-rocket mb-6"></i>
+                        <div class="text-5xl font-bold mb-4">
+                            <span id="downloadcount" class="number" data-from="0" data-to="0" data-refresh-interval="100">X</span>
+                        </div>
+                        <h4 class="text-xl">客户端下载量</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="min-h-screen flex items-center justify-center py-20 bg-gray-50 fade-in-up">
+        <div class="container mx-auto px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="mb-8">你想要的一切都在Minecraft 股东大会</h2>
+                <p class="text-lg max-w-4xl mx-auto">
+                    红石自动化农场 | 自动刷怪塔 | 自动分拣系统 | TNT掘矿机 | 飞行器 | 高效物资收集 | 大型社区红石工程 | 创意红石建筑 | 技术交流与教程 | 极限生存挑战 | 纯净无外挂 | 资源自给自足 | 友好技术社区 | 自动冶炼 | 计数器 | 服务器红石竞赛 | 玩家协作项目 | 高效刷铁 | 自动化工厂 | 机械美学
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <div class="bg-white p-10 text-center shadow-lg hover:shadow-xl transition-shadow scale-in">
+                    <div class="text-minecraft mb-8">
+                        <i class="lnr lnr-cog"></i>
+                    </div>
+                    <h3 class="text-2xl font-medium mb-6">王朝系统</h3>
+                    <p class="text-lg">你可以在服务器加入或者建立王朝|小兵|炮塔|征战|征税|任命|宣战|独立</p>
+                </div>
+                
+                <div class="bg-white p-10 text-center shadow-lg hover:shadow-xl transition-shadow scale-in">
+                    <div class="text-minecraft mb-8">
+                        <i class="lnr lnr-frame-contract"></i>
+                    </div>
+                    <h3 class="text-2xl font-medium mb-6">加官进爵</h3>
+                    <p class="text-lg">300+原创官位为玩家的每一阶段提供可能性，让玩家自己管理服务器的模式</p>
+                </div>
+                
+                <div class="bg-white p-10 text-center shadow-lg hover:shadow-xl transition-shadow scale-in">
+                    <div class="text-minecraft mb-8">
+                        <i class="lnr lnr-bubble"></i>
+                    </div>
+                    <h3 class="text-2xl font-medium mb-6">特色生存</h3>
+                    <p class="text-lg">服务器有三个完全不同的世界：生存世界|山海世界|王朝大陆 每个世界有完全不同的地形与生物哦~</p>
+                </div>
+                
+                <div class="bg-white p-10 text-center shadow-lg hover:shadow-xl transition-shadow scale-in">
+                    <div class="text-minecraft mb-8">
+                        <i class="lnr lnr-magic-wand"></i>
+                    </div>
+                    <h3 class="text-2xl font-medium mb-6">RPG武器</h3>
+                    <p class="text-lg">服务器有许多优秀的RPG武器，每件武器经过精细设计，让你的原版生存不再枯燥</p>
+                </div>
+                
+                <div class="bg-white p-10 text-center shadow-lg hover:shadow-xl transition-shadow scale-in">
+                    <div class="text-minecraft mb-8">
+                        <i class="lnr lnr-moon"></i>
+                    </div>
+                    <h3 class="text-2xl font-medium mb-6">垂钓系统</h3>
+                    <p class="text-lg">服务器拥有百种自定义鱼类与鱼饵，已经每天一次的垂钓大赛，如果你想来养老，这里也是你的不二之选</p>
+                </div>
+                
+                <div class="bg-white p-10 text-center shadow-lg hover:shadow-xl transition-shadow scale-in">
+                    <div class="text-minecraft mb-8">
+                        <i class="lnr lnr-cloud"></i>
+                    </div>
+                    <h3 class="text-2xl font-medium mb-6">每日任务</h3>
+                    <p class="text-lg">可通过每日任务获取任务币，任务币可以抽取大量武器装备，让你的王朝之旅不再漫无目的</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="blog" class="min-h-screen flex items-center justify-center py-20 bg-white fade-in-up">
+        <div class="container mx-auto px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="mb-8">我们的<span class="text-minecraft">团队</span></h2>
+                <p class="text-lg max-w-3xl mx-auto">我们有可靠且专业的团队，我们是服务器的强大后盾</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- 服主 - 在手机端显示为第一个，在电脑端显示为中间 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-visible scale-in md:order-2">
+                    <img src="static/picture/body2.png" alt="ADMIN-服主" class="w-full h-80 object-contain">
+                    <div class="p-8">
+                        <div class="text-minecraft text-lg font-medium mb-3">ADMIN-服主</div>
+                        <h3 class="text-2xl font-medium mb-3">MengXian_</h3>
+                        <p class="text-lg mb-4">2025-02-10 入职</p>
+                        <p class="text-lg">多年开服经验|与玩家非常融入|充足的管理时间|积极的工作态度（PS：遇到这么好的服主，还不心动来服务器玩玩吗！）</p>
+                    </div>
+                </div>
+                
+                <!-- 管理 - 在手机端显示为第二个，在电脑端显示为左边 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-visible fade-in-left md:order-1">
+                    <img src="static/picture/body.png" alt="TECH-管理" class="w-full h-80 object-contain">
+                    <div class="p-8">
+                        <div class="text-minecraft text-lg font-medium mb-3">TECH-管理</div>
+                        <h3 class="text-2xl font-medium mb-3">无</h3>
+                        <p class="text-lg mb-4">2025-02-10 入职</p>
+                        <p class="text-lg">最贴心管理，互动积极，有问题及时反馈的雌小鬼</p>
+                    </div>
+                </div>
+                
+                <!-- 建筑 - 在手机端显示为第三个，在电脑端显示为右边 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-visible fade-in-right md:order-3">
+                    <img src="static/picture/body3.png" alt="ARCHITECT-建筑" class="w-full h-80 object-contain">
+                    <div class="p-8">
+                        <div class="text-minecraft text-lg font-medium mb-3">ARCHITECT-建筑</div>
+                        <h3 class="text-2xl font-medium mb-3">无</h3>
+                        <p class="text-lg mb-4">无</p>
+                        <p class="text-lg">如果你对你的能力感到自信，欢迎来面试加入我们的团队</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="min-h-screen flex items-center justify-center py-20 bg-gray-50 fade-in-up">
+        <div class="container mx-auto px-8">
+            <div class="text-center mb-16 -mt-16 fade-in-up">
+                <h2 class="text-4xl md:text-5xl font-light mb-4">
+                    来自 <span class="font-semibold">Minecraft 股东大会</span>
+                    <span class="text-minecraft font-semibold">精彩的</span>
+                    服务器图片
+                </h2>
+                <div class="flex flex-col items-center space-y-2">
+                    <span class="text-lg md:text-xl text-gray-700">
+                        Minecraft 股东大会从来不只是一个冰冷服务器
+                    </span>
+                    <span class="text-lg md:text-xl text-minecraft">
+                        这里有着无数精彩的故事和回忆
+                    </span>
+                </div>
+            </div>
+            
+            <div class="flex justify-center mb-16 space-x-6">
+                <button class="filter-btn px-8 py-3 border-2 border-minecraft text-minecraft hover:bg-minecraft hover:text-white transition-all duration-300 rounded text-lg" data-filter="*">所有图片</button>
+                <button class="filter-btn px-8 py-3 border-2 border-gray-300 text-gray-600 hover:border-minecraft hover:text-minecraft transition-all duration-300 rounded text-lg" data-filter=".jianzhu">建筑</button>
+                <button class="filter-btn px-8 py-3 border-2 border-gray-300 text-gray-600 hover:border-minecraft hover:text-minecraft transition-all duration-300 rounded text-lg" data-filter=".fuben">垂钓</button>
+                <button class="filter-btn px-8 py-3 border-2 border-gray-300 text-gray-600 hover:border-minecraft hover:text-minecraft transition-all duration-300 rounded text-lg" data-filter=".heying">玩家合影</button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12" id="portfolio-grid">
+                <div class="portfolio-item heying group">
+                    <div class="relative overflow-hidden rounded-lg shadow-lg">
+                        <img src="https://ghfast.top/https://raw.githubusercontent.com/Menghuibanxian/Minecraft/main/Minecraft/photo-1.png" alt="山海世界" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
+                            <div class="text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <h4 class="text-2xl font-medium mb-3">山海世界</h4>
+                                <a href="https://ghfast.top/https://raw.githubusercontent.com/Menghuibanxian/Minecraft/main/Minecraft/photo-1.png" class="text-white hover:text-minecraft transition-colors" data-rel="lightcase">
+                                    <i class="lnr lnr-move text-3xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item jianzhu group">
+                    <div class="relative overflow-hidden rounded-lg shadow-lg">
+                        <img src="https://ghfast.top/https://raw.githubusercontent.com/Menghuibanxian/Minecraft/main/Minecraft/photo-2.png" alt="主城" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
+                            <div class="text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <h4 class="text-2xl font-medium mb-3">主城</h4>
+                                <a href="https://ghfast.top/https://raw.githubusercontent.com/Menghuibanxian/Minecraft/main/Minecraft/photo-2.png" class="text-white hover:text-minecraft transition-colors" data-rel="lightcase">
+                                    <i class="lnr lnr-move text-3xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item fuben group">
+                    <div class="relative overflow-hidden rounded-lg shadow-lg">
+                        <img src="https://ghfast.top/https://raw.githubusercontent.com/Menghuibanxian/Minecraft/main/Minecraft/photo-3.png" alt="垂钓小镇" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
+                            <div class="text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <h4 class="text-2xl font-medium mb-3">垂钓小镇</h4>
+                                <a href="https://ghfast.top/https://raw.githubusercontent.com/Menghuibanxian/Minecraft/main/Minecraft/photo-3.png" class="text-white hover:text-minecraft transition-colors" data-rel="lightcase">
+                                    <i class="lnr lnr-move text-3xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item jianzhu group">
+                    <div class="relative overflow-hidden rounded-lg shadow-lg">
+                        <img src="https://ghfast.top/https://raw.githubusercontent.com/Menghuibanxian/Minecraft/main/Minecraft/photo-4.png" alt="朝朝集市" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
+                            <div class="text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <h4 class="text-2xl font-medium mb-3">朝朝集市</h4>
+                                <a href="https://ghfast.top/https://raw.githubusercontent.com/Menghuibanxian/Minecraft/main/Minecraft/photo-4.png" class="text-white hover:text-minecraft transition-colors" data-rel="lightcase">
+                                    <i class="lnr lnr-move text-3xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item jianzhu group">
+                    <div class="relative overflow-hidden rounded-lg shadow-lg">
+                        <img src="https://ghfast.top/https://raw.githubusercontent.com/Menghuibanxian/Minecraft/main/Minecraft/photo-5.png" alt="王朝大陆" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
+                            <div class="text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <h4 class="text-2xl font-medium mb-3">王朝大陆</h4>
+                                <a href="https://ghfast.top/https://raw.githubusercontent.com/Menghuibanxian/Minecraft/main/Minecraft/photo-5.png" class="text-white hover:text-minecraft transition-colors" data-rel="lightcase">
+                                    <i class="lnr lnr-move text-3xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item heying group">
+                    <div class="relative overflow-hidden rounded-lg shadow-lg">
+                        <img src="https://ghfast.top/https://raw.githubusercontent.com/Menghuibanxian/Minecraft/main/Minecraft/photo-6.png" alt="玩家合影" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
+                            <div class="text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <h4 class="text-2xl font-medium mb-3">玩家合影</h4>
+                                <a href="https://ghfast.top/https://raw.githubusercontent.com/Menghuibanxian/Minecraft/main/Minecraft/photo-6.png" class="text-white hover:text-minecraft transition-colors" data-rel="lightcase">
+                                    <i class="lnr lnr-move text-3xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="min-h-screen flex flex-col items-center justify-center py-12 bg-white fade-in-up">
+      <div class="w-full max-w-4xl">
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+          <!-- 感谢文字区域 -->
+          <div class="bg-gray-50 p-8 md:p-12 text-center">
+            <h3 class="text-3xl md:text-4xl font-bold text-minecraft mb-6">感谢您的捐赠</h3>
+            <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
+              您的每一份支持都让 Minecraft 股东大会变得更好<br>
+              感谢您与我们一同建设这个精彩的游戏世界
+            </p>
+          </div>
+          
+          <!-- 支付二维码区域 -->
+          <div class="p-8 md:p-12 flex justify-center">
+            <div class="donate-zoom-wrapper w-full">
+              <a href="static/picture/支付.png" data-rel="lightcase" title="支付二维码" class="block">
+                <img src="static/picture/支付.png" alt="支付二维码" class="w-full h-auto rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300">
+              </a>
+              <div class="donate-zoom-overlay"></div>
+              <div class="donate-zoom-icon">
+                <a class="img-pop block" data-rel="lightcase" href="static/picture/支付.png" title="支付二维码">
+                  <span class="lnr lnr-move text-8xl bg-white rounded-full p-8 text-minecraft hover:text-red-500 transition-colors duration-300"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 免责声明 -->
+        <div class="mt-6 text-center text-gray-500 text-xs">
+          <p class="text-xs leading-relaxed">免责声明：本页面的捐赠仅用于服务器维护和社区发展，所有捐赠均为自愿，捐赠后不予退还。请您在捐赠前确认自己的意愿和金额。感谢您的支持与理解！</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 简洁音乐播放器 -->
+    <div class="music-player" id="musicPlayer" style="position:fixed;bottom:20px;right:40px;width:280px;height:50px;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-radius:25px;box-shadow:0 4px 20px rgba(0,0,0,0.15);display:flex;align-items:center;padding:0 15px;z-index:1000;transition:all 0.3s ease;overflow:hidden;">
+      <!-- 专辑封面播放按钮 -->
+      <div id="albumCoverBtn" style="position:relative;width:36px;height:36px;border:none;border-radius:50%;cursor:pointer;margin:0 6px 0 0;flex-shrink:0;overflow:hidden;transition:all 0.3s;display:flex;align-items:center;justify-content:center;">
+        <img id="albumImage" src="https://ghfast.top/https://raw.githubusercontent.com/Menghuibanxian/Minecraft/main/Minecraft/bg.jpg" alt="专辑封面" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+        <div id="playOverlay" style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;font-size:16px;color:white;transition:all 0.3s;border-radius:50%;">
+          ▶
+        </div>
+      </div>
+      
+      <!-- 歌曲信息 -->
+      <div style="flex:1;min-width:0;margin-right:10px;">
+        <div id="songTitle" style="font-size:12px;font-weight:bold;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Driftin</div>
+        <div style="display:flex;align-items:center;gap:5px;">
+          <input type="range" id="progressBar" min="0" max="100" value="0" style="flex:1;height:3px;background:#ddd;outline:none;border-radius:2px;-webkit-appearance:none;">
+          <span id="timeDisplay" style="font-size:10px;color:#666;white-space:nowrap;">0:00</span>
+        </div>
+      </div>
+      
+      <!-- 模式切换 -->
+      <div style="display:flex;gap:3px;align-items:center;">
+        <button id="modeBtn" style="width:24px;height:24px;border:none;background:none;cursor:pointer;font-size:14px;opacity:0.7;transition:opacity 0.2s;" title="列表播放">→</button>
+        <button id="listBtn" style="width:24px;height:24px;border:none;background:none;cursor:pointer;font-size:14px;opacity:0.7;transition:opacity 0.2s;" title="播放列表">☰</button>
+      </div>
+    </div>
+
+    <!-- 置顶按钮 -->
+    <button id="backToTop" style="position:fixed;bottom:20px;right:330px;width:50px;height:50px;background:rgba(0,0,0,0.7);border:none;border-radius:50%;cursor:pointer;z-index:1001;display:none;align-items:center;justify-content:center;font-size:20px;color:white;transition:all 0.3s ease;backdrop-filter:blur(5px);" title="返回顶部">
+      ↑
+    </button>
+    
+    <!-- 播放列表弹窗 -->
+    <div id="playlistModal" style="display:none;position:fixed;bottom:90px;right:40px;width:300px;max-height:200px;background:white;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.2);overflow-y:auto;z-index:1001;">
+      <div style="padding:10px;border-bottom:1px solid #eee;font-weight:bold;">播放列表</div>
+      <div id="playlistContent" style="padding:0;"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-16 bg-gray-900 text-white">
+        <div class="container mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="mb-6 md:mb-0 text-lg">© 2025. Minecraft 股东大会</p>
+                <div class="flex space-x-8">
+                    <a href="https://qm.qq.com/q/c8deXNraqk" class="hover:text-minecraft transition-colors text-xl">
+                        <i class="icon-facebook"></i>
+                    </a>
+                    <a href="https://qm.qq.com/q/c8deXNraqk" class="hover:text-minecraft transition-colors text-xl">
+                        <i class="icon-twitter"></i>
+                    </a>
+                    <a href="https://qm.qq.com/q/c8deXNraqk" class="hover:text-minecraft transition-colors text-xl">
+                        <i class="icon-instagram"></i>
+                    </a>
+                    <a href="https://qm.qq.com/q/c8deXNraqk" class="hover:text-minecraft transition-colors text-xl">
+                        <i class="icon-linkedin"></i>
+                    </a>
+                    <a href="https://qm.qq.com/q/c8deXNraqk" class="hover:text-minecraft transition-colors text-xl">
+                        <i class="icon-youtube"></i>
+                    </a>
+                    <a href="https://qm.qq.com/q/c8deXNraqk" class="hover:text-minecraft transition-colors text-xl">
+                        <i class="icon-pinterest"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- External JS -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="static/js/popper.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/select2.min.js"></script>
+    <script src="static/js/owl.carousel.min.js"></script>
+    <script src="static/js/isotope.min.js"></script>
+    <script src="static/js/lightcase.js"></script>
+    <script src="static/js/waypoint.min.js"></script>
+    <script src="static/js/jquery.countto.js"></script>
+    <!-- 已移除jquery.validate.min.js，因为项目中未使用jQuery验证功能 -->
+    <script src="static/js/app.min.js"></script>
+    <!-- 图片加载器 -->
+    <script src="static/js/image-loader.js"></script>
+
+    <script>
+        // 简洁音乐播放器功能
+        class SimpleMusicPlayer {
+            constructor() {
+                this.audio = new Audio();
+                // 为每首歌曲添加艺术家、专辑和权重属性
+                this.playlist = [
+                    { title: 'To Love Again', src: 'static/music/To Love Again.mp3', cover: 'static/music/To Love Again.jpg', artist: 'Artist A', album: 'Album 1', weight: 1.0 },
+                    { title: 'Driftin', src: 'static/music/Driftin.mp3', cover: 'static/music/Driftin.jpg', artist: 'Artist B', album: 'Album 2', weight: 1.0 },
+                    { title: 'Right Now', src: 'static/music/Right Now.mp3', cover: 'static/music/Right Now.jpg', artist: 'Artist C', album: 'Album 3', weight: 1.0 },
+                    { title: 'Matter of Time', src: 'static/music/Matter of Time.mp3', cover: 'static/music/Matter of Time.jpg', artist: 'Artist D', album: 'Album 1', weight: 1.0 }
+                ];
+                this.currentIndex = 0;
+                this.isPlaying = false;
+                this.wasPlaying = false; // 用于跟踪拖动进度条前的播放状态
+                this.playMode = 0; // 0: 列表播放, 1: 随机播放, 2: 单曲播放
+                this.recentlyPlayed = []; // 记忆窗口，存储最近播放的歌曲索引
+                this.memoryWindowSize = 3; // 记忆窗口大小，避免短期重复
+                this.shuffledPlaylist = []; // 洗牌后的播放列表
+                this.shuffleIndex = 0; // 当前洗牌列表中的位置
+                this.handleAudioError = null; // 存储错误处理函数引用
+                
+                this.init();
+            }
+            
+            init() {
+                this.bindEvents();
+                this.loadSong(this.currentIndex);
+                this.renderPlaylist();
+                // 初始化时进行一次洗牌
+                this.fisherYatesShuffle();
+                
+                // 自动播放（现代浏览器需要用户交互）
+                this.audio.play().then(() => {
+                    this.isPlaying = true;
+                    document.getElementById('playOverlay').innerHTML = '⏸';
+                    this.renderPlaylist(); // 确保播放列表状态同步
+                }).catch(e => {
+                    console.log('自动播放被阻止，等待用户交互');
+                    this.isPlaying = false;
+                    document.getElementById('playOverlay').innerHTML = '▶';
+                    // 添加用户友好的提示
+                    setTimeout(() => {
+                        const playBtn = document.getElementById('albumCoverBtn');
+                        if (playBtn) {
+                            playBtn.style.animation = 'pulse 2s infinite';
+                            playBtn.title = '点击开始播放音乐';
+                        }
+                    }, 500);
+                    this.renderPlaylist(); // 更新播放列表为暂停状态
+                });
+            }
+            
+            bindEvents() {
+                // 播放控制
+                document.getElementById('albumCoverBtn').addEventListener('click', () => this.togglePlay());
+                document.getElementById('modeBtn').addEventListener('click', () => this.toggleMode());
+                document.getElementById('listBtn').addEventListener('click', () => this.togglePlaylist());
+                
+                // 进度条 - 添加多种事件监听以确保兼容性
+                const progressBar = document.getElementById('progressBar');
+                progressBar.addEventListener('input', (e) => this.setProgress(e.target.value));
+                progressBar.addEventListener('change', (e) => this.setProgress(e.target.value));
+                progressBar.addEventListener('mousedown', (e) => {
+                    // 防止事件冒泡影响播放控制
+                    e.stopPropagation();
+                    // 暂停播放以避免拖动时重新播放
+                    this.wasPlaying = this.isPlaying;
+                    if (this.isPlaying) {
+                        this.audio.pause();
+                    }
+                });
+                progressBar.addEventListener('mouseup', (e) => {
+                    // 恢复播放状态
+                    if (this.wasPlaying) {
+                        this.audio.play();
+                    }
+                });
+                
+                // 音频事件
+                this.audio.addEventListener('timeupdate', () => this.updateProgress());
+                this.audio.addEventListener('ended', () => this.nextSong());
+                this.audio.addEventListener('loadedmetadata', () => this.updateDuration());
+                
+                // 点击其他地方关闭播放列表
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('.music-player') && !e.target.closest('#playlistModal')) {
+                        document.getElementById('playlistModal').style.display = 'none';
+                    }
+                });
+            }
+            
+            loadSong(index) {
+                // 验证索引
+                if (index < 0 || index >= this.playlist.length) {
+                    console.error('无效的歌曲索引:', index);
+                    return;
+                }
+                
+                // 检查音频元素是否存在
+                if (!this.audio) {
+                    this.audio = new Audio();
+                }
+                
+                // 添加重试机制
+                let retryCount = 0;
+                const maxRetries = 3;
+                
+                // 检查音频文件是否存在
+                this.audio.src = this.playlist[index].src;
+                this.audio.load();
+                
+                // 安全地更新DOM元素
+                try {
+                    const songTitleElement = document.getElementById('songTitle');
+                    if (songTitleElement) {
+                        songTitleElement.textContent = this.playlist[index].title || '未知歌曲';
+                    }
+                    
+                    // 更新专辑封面
+                    const albumImage = document.getElementById('albumImage');
+                    if (albumImage) {
+                        const placeholderSrc = 'https://ghfast.top/https://raw.githubusercontent.com/Menghuibanxian/Minecraft/main/Minecraft/bg.jpg';
+                        
+                        // 创建新的图片对象来预加载专辑封面
+                        const tempImg = new Image();
+                        tempImg.onload = () => {
+                            albumImage.src = this.playlist[index].cover || placeholderSrc;
+                        };
+                        tempImg.onerror = () => {
+                            console.error(`专辑封面加载失败: ${this.playlist[index].cover}`);
+                            albumImage.src = placeholderSrc;
+                        };
+                        tempImg.src = this.playlist[index].cover || placeholderSrc;
+                    }
+                } catch (e) {
+                    console.error('更新音乐播放器UI时出错:', e);
+                }
+                
+                // 移除之前可能存在的错误监听器，避免内存泄漏
+                if (this.handleAudioError) {
+                    this.audio.removeEventListener('error', this.handleAudioError);
+                }
+                
+                // 创建新的错误处理函数并保存引用
+                this.handleAudioError = (e) => {
+                    console.error('音频加载失败:', e);
+                    // 标记当前歌曲为无效
+                    this.playlist[index].invalid = true;
+                    
+                    // 尝试下一首，最多重试3次
+                    if (retryCount < maxRetries) {
+                        retryCount++;
+                        console.log(`尝试重试 (${retryCount}/${maxRetries})`);
+                        this.nextSong();
+                    } else {
+                        console.error('达到最大重试次数，播放失败');
+                        this.isPlaying = false;
+                        const playOverlay = document.getElementById('playOverlay');
+                        if (playOverlay) {
+                            playOverlay.innerHTML = '▶';
+                        }
+                        this.renderPlaylist();
+                    }
+                };
+                this.audio.addEventListener('error', this.handleAudioError);
+            }
+            
+            togglePlay() {
+                try {
+                    // 安全地检查和操作DOM元素
+                    const playOverlay = document.getElementById('playOverlay');
+                    if (!playOverlay) {
+                        console.error('无法找到播放覆盖层元素');
+                        return;
+                    }
+                    
+                    if (this.isPlaying) {
+                        this.audio.pause();
+                        playOverlay.innerHTML = '▶';
+                        this.isPlaying = false;
+                    } else {
+                        this.audio.play().catch(e => {
+                            console.error('播放失败:', e);
+                            // 尝试降级方案
+                            try {
+                                // 重置播放状态
+                                playOverlay.innerHTML = '▶';
+                                this.isPlaying = false;
+                                this.renderPlaylist();
+                                 
+                                // 提示用户可能需要交互
+                                const playBtn = document.getElementById('albumCoverBtn');
+                                if (playBtn) {
+                                    playBtn.style.animation = 'pulse 2s infinite';
+                                    playBtn.title = '点击开始播放音乐';
+                                }
+                            } catch (innerError) {
+                                console.error('更新播放状态时出错:', innerError);
+                            }
+                        });
+                        playOverlay.innerHTML = '⏸';
+                        this.isPlaying = true;
+                    }
+                    this.renderPlaylist(); // 更新播放列表状态显示
+                } catch (e) {
+                    console.error('切换播放状态时出错:', e);
+                }
+            }
+            
+            // Fisher-Yates 洗牌算法
+            fisherYatesShuffle() {
+                this.shuffledPlaylist = [...Array(this.playlist.length).keys()];
+                for (let i = this.shuffledPlaylist.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [this.shuffledPlaylist[i], this.shuffledPlaylist[j]] = [this.shuffledPlaylist[j], this.shuffledPlaylist[i]];
+                }
+                this.shuffleIndex = 0;
+            }
+            
+            // 更新记忆窗口
+            updateMemoryWindow(index) {
+                // 将当前歌曲添加到记忆窗口
+                this.recentlyPlayed.unshift(index);
+                // 如果记忆窗口超过大小限制，移除最旧的
+                if (this.recentlyPlayed.length > this.memoryWindowSize) {
+                    this.recentlyPlayed.pop();
+                }
+            }
+            
+            // 基于权重和记忆窗口的智能随机选择
+            smartRandomSelect() {
+                // 过滤掉记忆窗口中的歌曲
+                const availableSongs = [];
+                const weights = [];
+                
+                for (let i = 0; i < this.playlist.length; i++) {
+                    // 排除记忆窗口中的歌曲
+                    if (!this.recentlyPlayed.includes(i)) {
+                        availableSongs.push(i);
+                        weights.push(this.playlist[i].weight);
+                    }
+                }
+                
+                // 如果没有可用歌曲（理论上不应该发生），则从所有歌曲中选择
+                if (availableSongs.length === 0) {
+                    const randomIndex = Math.floor(Math.random() * this.playlist.length);
+                    return randomIndex;
+                }
+                
+                // 基于权重进行选择
+                const totalWeight = weights.reduce((sum, w) => sum + w, 0);
+                let random = Math.random() * totalWeight;
+                
+                for (let i = 0; i < availableSongs.length; i++) {
+                    random -= weights[i];
+                    if (random <= 0) {
+                        return availableSongs[i];
+                    }
+                }
+                
+                // 兜底方案
+                return availableSongs[availableSongs.length - 1];
+            }
+            
+            // 恢复权重
+            restoreWeights() {
+                this.playlist.forEach(song => {
+                    if (song.weight < 1.0) {
+                        // 缓慢恢复权重，但不超过1.0
+                        song.weight = Math.min(song.weight + 0.1, 1.0);
+                    }
+                });
+            }
+            
+            nextSong() {
+                try {
+                    // 记录当前歌曲到记忆窗口
+                    if (this.currentIndex !== -1 && this.currentIndex >= 0 && this.currentIndex < this.playlist.length) {
+                        this.updateMemoryWindow(this.currentIndex);
+                        // 降低当前播放歌曲的权重，避免短时间内再次播放
+                        this.playlist[this.currentIndex].weight = Math.max(0.3, this.playlist[this.currentIndex].weight * 0.7);
+                    }
+                    
+                    let nextIndex;
+                    switch(this.playMode) {
+                        case 0: // 列表播放
+                            nextIndex = (this.currentIndex + 1) % this.playlist.length;
+                            break;
+                        case 1: // 随机播放（结合洗牌和智能选择）
+                            // 检查是否需要重新洗牌
+                            if (this.shuffleIndex >= this.shuffledPlaylist.length) {
+                                this.fisherYatesShuffle();
+                                // 每轮结束时恢复所有权重
+                                this.restoreWeights();
+                            }
+                            
+                            // 确保洗牌列表有效
+                            if (!this.shuffledPlaylist || this.shuffledPlaylist.length === 0) {
+                                this.fisherYatesShuffle();
+                            }
+                            
+                            // 从洗牌后的列表中获取下一首
+                            let candidateIndex = this.shuffledPlaylist[this.shuffleIndex];
+                            this.shuffleIndex++;
+                            
+                            // 检查是否在记忆窗口中或与当前歌曲艺术家/专辑相同
+                            // 确保currentIndex有效且候选索引在有效范围内
+                            if ((this.currentIndex !== -1 && this.currentIndex >= 0 && this.currentIndex < this.playlist.length) && 
+                                (candidateIndex >= 0 && candidateIndex < this.playlist.length) && 
+                                (this.recentlyPlayed.includes(candidateIndex) ||
+                                 this.playlist[candidateIndex].album === this.playlist[this.currentIndex].album)) {
+                                // 使用智能随机选择替代
+                                nextIndex = this.smartRandomSelect();
+                            } else {
+                                nextIndex = candidateIndex;
+                            }
+                            break;
+                        case 2: // 单曲播放
+                            nextIndex = this.currentIndex;
+                            break;
+                        default:
+                            // 默认使用列表播放
+                            nextIndex = (this.currentIndex + 1) % this.playlist.length;
+                            break;
+                    }
+                    
+                    // 确保nextIndex有效
+                    if (nextIndex < 0 || nextIndex >= this.playlist.length) {
+                        console.warn('检测到无效索引，重置为0');
+                        nextIndex = 0;
+                    }
+                    
+                    this.currentIndex = nextIndex;
+                    this.loadSong(this.currentIndex);
+                    this.renderPlaylist(); // 更新播放列表显示
+                    
+                    // 修复：确保在播放下一首歌曲时正确处理Promise
+                    if (this.isPlaying) {
+                        // 先暂停当前音频（如果正在播放）
+                        if (!this.audio.paused) {
+                            this.audio.pause();
+                        }
+                        
+                        // 重新加载音频并播放
+                        this.audio.load();
+                        const playPromise = this.audio.play();
+                        
+                        if (playPromise !== undefined) {
+                            playPromise.catch(e => {
+                                console.error('播放下一首歌曲失败:', e);
+                                // 更新UI状态
+                                this.isPlaying = false;
+                                const playOverlay = document.getElementById('playOverlay');
+                                if (playOverlay) {
+                                    playOverlay.innerHTML = '▶';
+                                }
+                                this.renderPlaylist();
+                            });
+                        }
+                    }
+                } catch (e) {
+                    console.error('播放下一首歌曲时出错:', e);
+                    // 降级方案：尝试播放第一首歌曲
+                    try {
+                        this.currentIndex = 0;
+                        this.loadSong(0);
+                        this.renderPlaylist();
+                    } catch (fallbackError) {
+                        console.error('降级方案失败:', fallbackError);
+                    }
+                }
+            }
+            
+
+            
+            toggleMode() {
+                try {
+                    this.playMode = (this.playMode + 1) % 3;
+                    this.updateModeButton();
+                    // 重置记忆窗口
+                    this.recentlyPlayed = [];
+                    // 如果切换到随机播放模式，确保洗牌列表已初始化
+                    if (this.playMode === 1) {
+                        this.fisherYatesShuffle();
+                    }
+                    // 更新播放列表显示
+                    this.renderPlaylist();
+                } catch (e) {
+                    console.error('切换播放模式时出错:', e);
+                }
+            }
+            
+            updateModeButton() {
+                const modes = ['→', '⇌', '⟳₁'];
+                const titles = ['列表播放', '随机播放', '单曲播放'];
+                const modeBtn = document.getElementById('modeBtn');
+                if (modeBtn) {
+                    modeBtn.innerHTML = modes[this.playMode];
+                    modeBtn.title = titles[this.playMode];
+                }
+            }
+            
+            setProgress(value) {
+                try {
+                    // 确保音频元素存在且duration有效
+                    if (this.audio && this.audio.duration && !isNaN(this.audio.duration)) {
+                        const seekTime = (value / 100) * this.audio.duration;
+                        // 确保seekTime在有效范围内
+                        this.audio.currentTime = Math.max(0, Math.min(seekTime, this.audio.duration));
+                    } else {
+                        console.warn('音频时长不可用，无法设置进度');
+                    }
+                } catch (e) {
+                    console.error('设置进度时出错:', e);
+                }
+            }
+            
+            updateProgress() {
+                try {
+                    // 确保音频元素存在且duration有效
+                    if (this.audio && this.audio.duration && !isNaN(this.audio.duration) && !isNaN(this.audio.currentTime)) {
+                        const progress = (this.audio.currentTime / this.audio.duration) * 100;
+                        
+                        // 安全地更新DOM元素
+                        const progressBar = document.getElementById('progressBar');
+                        const timeDisplay = document.getElementById('timeDisplay');
+                        
+                        if (progressBar) {
+                            // 处理NaN值和边界情况
+                            const validProgress = isNaN(progress) ? 0 : Math.max(0, Math.min(progress, 100));
+                            progressBar.value = validProgress;
+                        }
+                        
+                        if (timeDisplay) {
+                            const currentMinutes = Math.floor(this.audio.currentTime / 60);
+                            const currentSeconds = Math.floor(this.audio.currentTime % 60);
+                            const totalMinutes = Math.floor(this.audio.duration / 60);
+                            const totalSeconds = Math.floor(this.audio.duration % 60);
+                            
+                            // 格式化时间显示
+                            const currentTimeFormatted = `${currentMinutes}:${currentSeconds.toString().padStart(2, '0')}`;
+                            const totalTimeFormatted = `${totalMinutes}:${totalSeconds.toString().padStart(2, '0')}`;
+                            timeDisplay.textContent = `${currentTimeFormatted}/${totalTimeFormatted}`;
+                        }
+                    }
+                } catch (e) {
+                    // 静默失败，但记录错误信息
+                    console.debug('更新进度时出错:', e);
+                }
+            }
+            
+            updateDuration() {
+                // 时间显示会在updateProgress中处理
+            }
+            
+            togglePlaylist() {
+                const modal = document.getElementById('playlistModal');
+                modal.style.display = modal.style.display === 'none' ? 'block' : 'none';
+            }
+            
+            renderPlaylist() {
+                const content = document.getElementById('playlistContent');
+                content.innerHTML = '';
+                
+                this.playlist.forEach((song, index) => {
+                    const item = document.createElement('div');
+                    item.style.cssText = 'padding:8px 10px;cursor:pointer;border-bottom:1px solid #eee;font-size:12px;transition:background 0.2s;display:flex;align-items:center;justify-content:space-between;';
+                    
+                    const titleSpan = document.createElement('span');
+                    titleSpan.textContent = song.title;
+                    titleSpan.style.cssText = 'flex:1;';
+                    
+                    const statusSpan = document.createElement('span');
+                    statusSpan.style.cssText = 'font-size:10px;margin-left:5px;';
+                    
+                    if (index === this.currentIndex) {
+                        item.style.backgroundColor = '#e3f2fd';
+                        item.style.fontWeight = 'bold';
+                        item.style.borderLeft = '3px solid #54C754';
+                        statusSpan.textContent = this.isPlaying ? '▶ 播放中' : '⏸ 已暂停';
+                        statusSpan.style.color = '#54C754';
+                    } else {
+                        statusSpan.textContent = '';
+                    }
+                    
+                    item.appendChild(titleSpan);
+                    item.appendChild(statusSpan);
+                    
+                    item.addEventListener('click', () => {
+                        this.currentIndex = index;
+                        this.loadSong(this.currentIndex);
+                        document.getElementById('playOverlay').innerHTML = '⏸';
+                        this.audio.play().catch(e => {
+                            console.error('播放失败:', e);
+                        });
+                        this.isPlaying = true;
+                        this.togglePlaylist();
+                        this.renderPlaylist(); // 重新渲染以更新状态
+                    });
+                    
+                    content.appendChild(item);
+                });
+            }
+        }
+        
+        // 初始化简洁音乐播放器、滚动动画观察器、导航栏颜色控制、页面加载功能和公告关闭按钮事件
+        let musicPlayer;
+        document.addEventListener('DOMContentLoaded', () => {
+            // 延迟执行非关键初始化操作，提高页面加载速度
+            setTimeout(() => {
+                try {
+                    // 检查浏览器是否支持Audio API
+                    if (typeof Audio !== 'undefined') {
+                        musicPlayer = new SimpleMusicPlayer();
+                    } else {
+                        console.warn('浏览器不支持Audio API，隐藏音乐播放器');
+                        hideMusicPlayer();
+                    }
+                } catch (error) {
+                    console.error('音乐播放器初始化失败:', error);
+                    // 隐藏音乐播放器
+                    hideMusicPlayer();
+                }
+                
+                // 滚动动画观察器
+                try {
+                    const observerOptions = {
+                        threshold: 0.1,
+                        rootMargin: '0px 0px -50px 0px'
+                    };
+                    
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            try {
+                                if (entry.isIntersecting) {
+                                    entry.target.classList.add('visible');
+                                }
+                            } catch (error) {
+                                console.error('处理交集观察器条目时出错:', error);
+                            }
+                        });
+                    }, observerOptions);
+                    
+                    // 观察所有动画元素
+                    try {
+                        const animatedElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in');
+                        if (animatedElements && animatedElements.length > 0) {
+                            animatedElements.forEach(el => {
+                                try {
+                                    observer.observe(el);
+                                } catch (error) {
+                                    console.error('观察元素时出错:', error);
+                                }
+                            });
+                        }
+                    } catch (error) {
+                        console.error('初始化动画观察器时出错:', error);
+                    }
+                } catch (error) {
+                    console.error('初始化滚动动画观察器失败:', error);
+                }
+                
+                // 导航栏颜色控制
+                try {
+                    const navbar = document.getElementById('navbar');
+                    const heroSection = document.getElementById('home');
+
+                    if (navbar && heroSection) {
+                        // Intersection Observer: 切换导航字体颜色
+                        const observer = new IntersectionObserver(
+                          ([entry]) => {
+                            // 只有hero区块大部分在视口顶部时才变白字
+                            if (entry.isIntersecting && entry.boundingClientRect.top <= navbar.offsetHeight) {
+                              navbar.classList.add('text-white');
+                              navbar.classList.remove('text-gray-900');
+                            } else {
+                              navbar.classList.remove('text-white');
+                              navbar.classList.add('text-gray-900');
+                            }
+                          },
+                          {
+                            root: null,
+                            threshold: 0.5, // 50%可见时切换
+                            rootMargin: `-${navbar.offsetHeight}px 0px 0px 0px`
+                          }
+                        );
+
+                        observer.observe(heroSection);
+                    }
+                } catch (error) {
+                    console.error('初始化导航栏颜色控制失败:', error);
+                }
+            }, 100); // 延迟100毫秒执行非关键初始化
+            
+            // 页面加载时获取公告和服务器信息
+            // 注意：loadAnnouncement已在页面脚本加载时立即执行，此处无需重复调用
+            
+            // 绑定公告关闭按钮事件
+            try {
+                const closeBtn = document.getElementById('close-announcement');
+                const acknowledgeBtn = document.getElementById('acknowledge-announcement');
+                const invisibleButton = document.getElementById('invisible-button');
+                
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', closeAnnouncement);
+                }
+                
+                if (acknowledgeBtn) {
+                    acknowledgeBtn.addEventListener('click', closeAnnouncement);
+                }
+                
+                // 绑定"我看不见这个按钮"的点击事件
+                if (invisibleButton) {
+                    invisibleButton.addEventListener('click', handleInvisibleButtonClick);
+                }
+                
+                // 绑定"立即进服"按钮事件
+                const enterServerBtn = document.getElementById('enter-server-btn');
+                if (enterServerBtn) {
+                    // 移动端触摸事件处理
+                    enterServerBtn.addEventListener('touchstart', function(e) {
+                        // 添加触摸反馈
+                        this.classList.add('active-touch');
+                    });
+                    
+                    enterServerBtn.addEventListener('touchend', function(e) {
+                        // 移除触摸反馈
+                        this.classList.remove('active-touch');
+                    });
+                    
+                    enterServerBtn.addEventListener('touchcancel', function(e) {
+                        // 触摸取消时也移除反馈
+                        this.classList.remove('active-touch');
+                    });
+                    
+                    enterServerBtn.addEventListener('click', function(e) {
+                        // 阻止默认行为，避免移动端保持:active状态
+                        e.preventDefault();
+                        
+                        // 播放音乐
+                        if (musicPlayer && musicPlayer.audio) {
+                            // 如果音乐暂停或未播放，则播放音乐
+                            if (musicPlayer.audio.paused || musicPlayer.audio.ended) {
+                                musicPlayer.togglePlay();
+                            }
+                        }
+                        
+                        // 平滑滚动到目标位置
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                        
+                        // 强制移除active状态（移动端兼容性处理）
+                        setTimeout(() => {
+                            this.blur();
+                            this.classList.remove('active-touch');
+                        }, 300);
+                    });
+                }
+            } catch (error) {
+                console.error('绑定公告关闭按钮事件失败:', error);
+            }
+        });
+        
+        // 隐藏音乐播放器的函数
+        function hideMusicPlayer() {
+            try {
+                const player = document.getElementById('musicPlayer');
+                if (player) {
+                    player.style.display = 'none';
+                }
+            } catch (error) {
+                console.error('隐藏音乐播放器失败:', error);
+            }
+        }
+        
+
+        
+        // 置顶按钮功能
+        try {
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            if (backToTopBtn) {
+                // 显示/隐藏置顶按钮 -->
+                window.addEventListener('scroll', () => {
+                    try {
+                        if (window.scrollY > 300) {
+                            backToTopBtn.style.display = 'flex';
+                        } else {
+                            backToTopBtn.style.display = 'none';
+                        }
+                    } catch (error) {
+                        console.error('置顶按钮显示/隐藏错误:', error);
+                    }
+                });
+                
+                // 点击返回顶部 -->
+                backToTopBtn.addEventListener('click', () => {
+                    try {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    } catch (error) {
+                        console.error('返回顶部功能错误:', error);
+                        // 降级处理
+                        window.scrollTo(0, 0);
+                    }
+                });
+                
+                // 鼠标悬停效果 -->
+                backToTopBtn.addEventListener('mouseenter', () => {
+                    try {
+                        backToTopBtn.style.background = 'rgba(0,0,0,0.9)';
+                        backToTopBtn.style.transform = 'scale(1.1)';
+                    } catch (error) {
+                        console.error('置顶按钮悬停效果错误:', error);
+                    }
+                });
+                
+                backToTopBtn.addEventListener('mouseleave', () => {
+                    try {
+                        backToTopBtn.style.background = 'rgba(0,0,0,0.7)';
+                        backToTopBtn.style.transform = 'scale(1)';
+                    } catch (error) {
+                        console.error('置顶按钮离开效果错误:', error);
+                    }
+                });
+            }
+        } catch (error) {
+            console.error('初始化置顶按钮失败:', error);
+        }
+        
+        // Navigation scroll effect - 初始有白色背景，滚动时变半透明
+        try {
+            const navbar = document.getElementById('navbar');
+            if (navbar) {
+                window.addEventListener('scroll', () => {
+                    try {
+                        if (window.scrollY > 50) {
+                            navbar.classList.remove('bg-white', 'text-gray-900');
+                            navbar.classList.add('bg-white/40', 'text-white');
+                        } else {
+                            navbar.classList.add('bg-white', 'text-gray-900');
+                            navbar.classList.remove('bg-white/40', 'text-white');
+                        }
+                    } catch (error) {
+                        console.error('导航栏滚动效果处理错误:', error);
+                    }
+                });
+            }
+        } catch (error) {
+            console.error('初始化导航栏滚动效果失败:', error);
+        }
+        
+        // Mobile menu toggle (延迟执行)
+        document.addEventListener('DOMContentLoaded', () => {
+            // 延迟初始化移动端菜单，提高页面加载速度
+            setTimeout(() => {
+                try {
+                    const menuToggle = document.getElementById('menu-toggle');
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    
+                    if (menuToggle && mobileMenu) {
+                        menuToggle.addEventListener('click', () => {
+                            try {
+                                mobileMenu.classList.toggle('hidden');
+                                if (mobileMenu.classList.contains('hidden')) {
+                                    menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+                                } else {
+                                    menuToggle.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                                }
+                            } catch (error) {
+                                console.error('移动端菜单切换错误:', error);
+                            }
+                        });
+                        
+                        // Close mobile menu when clicking on a link
+                        const mobileLinks = mobileMenu.querySelectorAll('a');
+                        if (mobileLinks) {
+                            mobileLinks.forEach(link => {
+                                link.addEventListener('click', () => {
+                                    try {
+                                        mobileMenu.classList.add('hidden');
+                                        menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+                                    } catch (error) {
+                                        console.error('关闭移动端菜单错误:', error);
+                                    }
+                                });
+                            });
+                        }
+                    }
+                } catch (error) {
+                    console.error('初始化移动端菜单失败:', error);
+                }
+            }, 200); // 延迟200毫秒执行移动端菜单初始化
+        });
+        
+        // Smooth scrolling for anchor links
+        try {
+            // 优化的滚动函数，确保每次定位准确
+            function scrollToTarget(targetId) {
+                const targetElement = document.querySelector(targetId);
+                if (!targetElement) {
+                    console.error('未找到目标元素:', targetId);
+                    return;
+                }
+                
+                // 确保目标元素的动画已触发
+                // 对于有动画效果的元素，先添加visible类以确保其正确显示
+                const animatedClasses = ['fade-in-up', 'fade-in-left', 'fade-in-right', 'scale-in'];
+                animatedClasses.forEach(cls => {
+                    if (targetElement.classList.contains(cls)) {
+                        targetElement.classList.add('visible');
+                    }
+                });
+                
+                // 同时检查目标元素的父元素是否包含动画类
+                let parent = targetElement.parentElement;
+                while (parent && parent !== document.body) {
+                    animatedClasses.forEach(cls => {
+                        if (parent.classList.contains(cls)) {
+                            parent.classList.add('visible');
+                        }
+                    });
+                    parent = parent.parentElement;
+                }
+                
+                // 强制重新计算布局，确保获取准确的位置信息
+                window.dispatchEvent(new Event('resize'));
+                
+                // 连续两次获取目标位置，确保准确性
+                let targetPosition;
+                for (let i = 0; i < 2; i++) {
+                    const targetRect = targetElement.getBoundingClientRect();
+                    targetPosition = window.pageYOffset + targetRect.top;
+                    // 短暂延迟确保DOM更新
+                    if (i === 0) {
+                        setTimeout(() => {}, 50);
+                    }
+                }
+                
+                // 获取导航栏高度
+                const navbar = document.getElementById('navbar');
+                // 确保导航栏高度正确获取
+                let navbarHeight = 70; // 默认值
+                if (navbar) {
+                    // 强制导航栏重排以获取准确高度
+                    navbar.style.display = 'none';
+                    navbar.offsetHeight; // 触发重排
+                    navbar.style.display = '';
+                    navbarHeight = navbar.offsetHeight;
+                }
+                
+                // 计算滚动目标位置（从目标元素原始位置偏移）
+                const scrollTarget = targetPosition - navbarHeight;
+                
+                console.log('目标元素:', targetId);
+                console.log('目标位置:', targetPosition);
+                console.log('导航栏高度:', navbarHeight);
+                console.log('滚动目标:', scrollTarget);
+                
+                // 检查是否需要进行滚动
+                const currentScrollPos = window.pageYOffset;
+                const needScroll = Math.abs(scrollTarget - currentScrollPos) > 5;
+                
+                if (needScroll) {
+                    try {
+                        // 先取消任何正在进行的滚动动画
+                        if (window.currentScrollAnimation) {
+                            cancelAnimationFrame(window.currentScrollAnimation);
+                        }
+                        
+                        // 清理任何之前的滚动完成监听器
+                        if (window.onScrollComplete) {
+                            window.removeEventListener('scroll', window.onScrollComplete);
+                        }
+                        
+                        // 使用window.scrollTo进行精确控制
+                        if ('scrollBehavior' in document.documentElement.style) {
+                            // 先短暂停止所有可能的动画或过渡效果
+                            document.documentElement.style.transition = 'none';
+                            window.scrollTo(0, currentScrollPos); // 重置当前位置
+                            setTimeout(() => {
+                                document.documentElement.style.transition = '';
+                                
+                                window.scrollTo({
+                                    top: scrollTarget,
+                                    behavior: 'smooth'
+                                });
+                            }, 10);
+                            
+                            // 设置滚动完成检测
+                            let stabilizationCounter = 0;
+                            let lastScrollPos = window.pageYOffset;
+                            const maxChecks = 20; // 最大检查次数
+                            let checkCount = 0;
+                            
+                            window.onScrollComplete = function() {
+                                checkCount++;
+                                const currentPos = window.pageYOffset;
+                                
+                                // 检测滚动是否稳定（连续2次位置相同或变化小于1px）
+                                if (Math.abs(currentPos - lastScrollPos) < 1) {
+                                    stabilizationCounter++;
+                                } else {
+                                    stabilizationCounter = 0;
+                                    lastScrollPos = currentPos;
+                                }
+                                
+                                // 当滚动稳定或达到检查上限时
+                                if (stabilizationCounter >= 2 || checkCount >= maxChecks) {
+                                    // 滚动结束后重新计算目标位置
+                                    // 确保目标元素的动画已触发
+                                    const animatedClasses = ['fade-in-up', 'fade-in-left', 'fade-in-right', 'scale-in'];
+                                    animatedClasses.forEach(cls => {
+                                        if (targetElement.classList.contains(cls)) {
+                                            targetElement.classList.add('visible');
+                                        }
+                                    });
+                                    
+                                    // 同时检查目标元素的父元素是否包含动画类
+                                    let parent = targetElement.parentElement;
+                                    while (parent && parent !== document.body) {
+                                        animatedClasses.forEach(cls => {
+                                            if (parent.classList.contains(cls)) {
+                                                parent.classList.add('visible');
+                                            }
+                                        });
+                                        parent = parent.parentElement;
+                                    }
+                                    
+                                    const updatedTargetRect = targetElement.getBoundingClientRect();
+                                    const updatedTargetPos = window.pageYOffset + updatedTargetRect.top;
+                                    const updatedScrollTarget = updatedTargetPos - navbarHeight;
+                                    
+                                    const actualTop = window.pageYOffset;
+                                    const difference = Math.abs(updatedScrollTarget - actualTop);
+                                    console.log('滚动稳定 - 实际位置:', actualTop, '目标位置更新为:', updatedScrollTarget, '差异:', difference);
+                                    
+                                    // 执行精确微调
+                                    if (difference > 2) {
+                                        console.log('执行最终位置微调');
+                                        // 使用瞬时滚动确保精确定位
+                                        window.scrollTo({
+                                            top: updatedScrollTarget,
+                                            behavior: 'auto'
+                                        });
+                                    }
+                                    
+                                    // 清理事件监听器
+                                    window.removeEventListener('scroll', window.onScrollComplete);
+                                    window.onScrollComplete = null;
+                                }
+                            };
+                            
+                            // 添加滚动事件监听器来检测滚动完成
+                            window.addEventListener('scroll', window.onScrollComplete);
+                            
+                            // 多级超时微调机制
+                            const timeoutSteps = [500, 1000, 1500]; // 多级超时
+                            timeoutSteps.forEach((timeout, index) => {
+                                setTimeout(() => {
+                                    if (window.onScrollComplete) {
+                                        // 滚动结束后重新计算目标位置
+                                        // 确保目标元素的动画已触发
+                                        const animatedClasses = ['fade-in-up', 'fade-in-left', 'fade-in-right', 'scale-in'];
+                                        animatedClasses.forEach(cls => {
+                                            if (targetElement.classList.contains(cls)) {
+                                                targetElement.classList.add('visible');
+                                            }
+                                        });
+                                        
+                                        // 同时检查目标元素的父元素是否包含动画类
+                                        let parent = targetElement.parentElement;
+                                        while (parent && parent !== document.body) {
+                                            animatedClasses.forEach(cls => {
+                                                if (parent.classList.contains(cls)) {
+                                                    parent.classList.add('visible');
+                                                }
+                                            });
+                                            parent = parent.parentElement;
+                                        }
+                                        
+                                        const updatedTargetRect = targetElement.getBoundingClientRect();
+                                        const updatedTargetPos = window.pageYOffset + updatedTargetRect.top;
+                                        const updatedScrollTarget = updatedTargetPos - navbarHeight;
+                                        
+                                        const actualTop = window.pageYOffset;
+                                        const difference = Math.abs(updatedScrollTarget - actualTop);
+                                        console.log(`超时微调 ${index+1} - 实际位置:`, actualTop, '目标位置更新为:', updatedScrollTarget, '差异:', difference);
+                                        
+                                        if (difference > 2) {
+                                            console.log('执行超时位置微调');
+                                            window.scrollTo({
+                                                top: updatedScrollTarget,
+                                                behavior: 'auto'
+                                            });
+                                        }
+                                        
+                                        // 最后一次超时后清理事件监听器
+                                        if (index === timeoutSteps.length - 1) {
+                                            window.removeEventListener('scroll', window.onScrollComplete);
+                                            window.onScrollComplete = null;
+                                        }
+                                    }
+                                }, timeout);
+                            });
+                        } else {
+                            // 降级处理
+                            smoothScrollTo(scrollTarget);
+                        }
+                    } catch (error) {
+                        console.error('滚动方法失败:', error);
+                        window.scrollTo(0, scrollTarget);
+                    }
+                }
+            }
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+              anchor.addEventListener('click', function(e) {
+                try {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#' || !document.querySelector(targetId)) return;
+                    e.preventDefault();
+                    
+                    // 使用优化的滚动函数
+                    scrollToTarget(targetId);
+                } catch (error) {
+                    console.error('平滑滚动处理错误:', error);
+                    // 降级处理：直接跳转
+                    const targetId = this.getAttribute('href');
+                    if (targetId !== '#') {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView();
+                        }
+                    }
+                }
+              });
+            });
+        } catch (error) {
+            console.error('初始化平滑滚动功能失败:', error);
+        }
+        
+        // 降级处理的平滑滚动函数，支持自定义持续时间
+        function smoothScrollTo(to, duration = 500) {
+            try {
+                const start = window.pageYOffset;
+                const change = to - start;
+                let currentTime = 0;
+                const increment = 16; // 约60fps
+                
+                // 缓动函数
+                const easeInOutQuad = function(t, b, c, d) {
+                    t /= d/2;
+                    if (t < 1) return c/2*t*t + b;
+                    t--;
+                    return -c/2 * (t*(t-2) - 1) + b;
+                };
+                
+                const animateScroll = function() {        
+                    currentTime += increment;
+                    const val = easeInOutQuad(currentTime, start, change, duration);
+                    window.scrollTo(0, val);
+                    if(currentTime < duration) {
+                        // 保存动画帧ID，以便可以取消
+                        window.currentScrollAnimation = requestAnimationFrame(animateScroll);
+                    } else {
+                        // 动画完成后清除引用
+                        window.currentScrollAnimation = null;
+                    }
+                };
+                
+                // 使用requestAnimationFrame提高性能
+                window.currentScrollAnimation = requestAnimationFrame(animateScroll);
+            } catch (error) {
+                console.error('降级平滑滚动函数错误:', error);
+                // 最后的降级处理：直接跳转
+                window.scrollTo(0, to);
+            }
+        }
+        
+        // Portfolio filtering
+        try {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            const portfolioGrid = document.getElementById('portfolio-grid');
+            
+            // 初始化：在页面加载完成后设置作品网格的最小高度
+            if (portfolioGrid) {
+                const setInitialGridHeight = () => {
+                    const computedStyle = window.getComputedStyle(portfolioGrid);
+                    const currentHeight = computedStyle.getPropertyValue('height');
+                    portfolioGrid.style.minHeight = currentHeight;
+                };
+                
+                // 在DOM加载完成后设置初始高度
+                setInitialGridHeight();
+                // 在窗口大小改变时重新计算高度
+                window.addEventListener('resize', setInitialGridHeight);
+            }
+            
+            if (filterBtns && filterBtns.length > 0 && portfolioItems && portfolioItems.length > 0) {
+                filterBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        try {
+                            const filter = btn.getAttribute('data-filter');
+                            
+                            // Update active button
+                            filterBtns.forEach(b => {
+                                try {
+                                    b.classList.remove('border-minecraft', 'text-minecraft', 'bg-minecraft', 'text-white');
+                                    b.classList.add('border-gray-300', 'text-gray-600');
+                                } catch (error) {
+                                    console.error('更新按钮样式失败:', error);
+                                }
+                            });
+                            
+                            try {
+                                btn.classList.remove('border-gray-300', 'text-gray-600');
+                                btn.classList.add('border-minecraft', 'text-minecraft');
+                            } catch (error) {
+                                console.error('设置活动按钮样式失败:', error);
+                            }
+                            
+                            // Filter items
+                            portfolioItems.forEach(item => {
+                                try {
+                                    if (filter === '*' || item.classList.contains(filter.replace('.', ''))) {
+                                        item.style.display = 'block';
+                                    } else {
+                                        item.style.display = 'none';
+                                    }
+                                } catch (error) {
+                                    console.error('筛选项目时出错:', error);
+                                }
+                            });
+                            
+                            // 修复：确保筛选后页面高度保持不变
+                            const portfolioGrid = document.getElementById('portfolio-grid');
+                            if (portfolioGrid) {
+                                // 保存原始高度并设置为最小高度
+                                const computedStyle = window.getComputedStyle(portfolioGrid);
+                                const currentHeight = computedStyle.getPropertyValue('height');
+                                portfolioGrid.style.minHeight = currentHeight;
+                            }
+                        } catch (error) {
+                            console.error('处理筛选按钮点击事件时出错:', error);
+                        }
+                    });
+                });
+            }
+        } catch (error) {
+            console.error('初始化作品集筛选功能失败:', error);
+        }
+        
+        // Counter script
+        // 初始化 lightcase 放大图片功能
+        try {
+            if (typeof $ !== 'undefined' && $.fn && $.fn.lightcase) {
+                $(document).ready(function() {
+                    try {
+                        $('[data-rel^=lightcase]').lightcase();
+                    } catch (error) {
+                        console.error('初始化lightcase失败:', error);
+                    }
+                });
+            }
+        } catch (error) {
+            console.error('检查jQuery和lightcase时出错:', error);
+        }
+
+        // 导航栏颜色控制已合并到主DOMContentLoaded监听器中
+
+        // 复制敬请期待文字功能
+        document.querySelectorAll('.copy-text').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const textToCopy = this.getAttribute('data-text');
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        const tip = document.getElementById('copyTip');
+                        if (tip) {
+                            tip.classList.remove('hidden');
+                            setTimeout(() => tip.classList.add('hidden'), 2000);
+                        }
+                    }).catch(err => {
+                        console.error('复制失败:', err);
+                    });
+                } else {
+                    // 兼容性处理
+                    fallbackCopyTextToClipboard(textToCopy);
+                }
+            });
+        });
+        
+
+        
+        // 已移除Promise.any polyfill，因为不再需要（已删除使用此功能的testUrlsAndFetch函数）
+        
+        
+        // 备用的URL测试和获取函数，使用串行方式确保所有链接都被尝试
+        function testUrlsAndFetchSequentially(urls, maxRetries = 1) {
+            // 新增请求缓存和终止控制
+            const requestCache = new Map();
+            const abortController = new AbortController();
+            const errors = [];
+
+            // 使用GITHUB_URLS数组中定义的链接优先级
+            const priorityUrls = urls;
+            
+            // 降级策略：尝试使用本地缓存或localStorage中的数据
+            function tryLocalFallback() {
+                console.log('尝试使用本地降级策略');
+                
+                // 1. 尝试使用localStorage中的缓存数据（如果有）
+                try {
+                    const cachedData = localStorage.getItem('minecraft_server_cache');
+                    const cacheTimestamp = localStorage.getItem('minecraft_server_cache_timestamp');
+                    
+                    if (cachedData && cacheTimestamp) {
+                        const cacheAge = Date.now() - parseInt(cacheTimestamp);
+                        // 如果缓存数据不超过24小时，使用它
+                        if (cacheAge < 24 * 60 * 60 * 1000) {
+                            console.log('使用localStorage中的缓存数据');
+                            processData(cachedData);
+                            return true;
+                        }
+                    }
+                } catch (e) {
+                    console.warn('读取localStorage失败:', e);
+                }
+                
+                // 2. 如果没有可用缓存，加载默认信息
+                return false;
+            }
+            
+            // 记录错误信息
+            function recordError(url, error) {
+                errors.push({
+                    url,
+                    error: error.message || String(error),
+                    timestamp: new Date().toISOString()
+                });
+            }
+            
+            // 递归函数，按顺序尝试每个URL
+            function tryNextUrl(urlsToTry, retryCount = 0) {
+                if (urlsToTry.length === 0) {
+                    if (retryCount < maxRetries) {
+                        // 如果第一次尝试全部失败，再重试一次
+                        console.warn('第一次尝试全部链接失败，正在重试...');
+                        // 第二次尝试时使用相同的优先级顺序
+                        return tryNextUrl(priorityUrls, retryCount + 1);
+                    } else {
+                        // 所有链接都尝试失败，包括重试
+                        console.error('所有链接都不可用，尝试降级策略');
+                        console.error('错误详情:', errors);
+                        
+                        // 尝试使用本地降级策略
+                        const fallbackSuccess = tryLocalFallback();
+                        
+                        if (!fallbackSuccess) {
+                            // 如果降级策略失败，加载默认信息
+                            loadDefaultServerInfo();
+                        }
+                        
+                        // 明确关闭公告
+                        const modalEl = document.getElementById('announcement-modal');
+                        if (modalEl) modalEl.classList.add('hidden');
+                        
+                        return;
+                    }
+                }
+                
+                const currentUrl = urlsToTry[0];
+                const remainingUrls = urlsToTry.slice(1);
+                
+                console.log(`正在尝试链接: ${currentUrl}`);
+                
+                // 优化：减少超时时间到3秒，更快响应
+                const timeoutPromise = new Promise((_, reject) => {
+                    setTimeout(() => {
+                        reject(new Error(`请求超时: ${currentUrl}`));
+                    }, 3000);
+                });
+                
+                // 使用Promise.race添加超时控制
+                Promise.race([
+                    fetch(currentUrl, { 
+                            priority: 'high',
+                            signal: abortController.signal,
+                            cache: requestCache.has(currentUrl) ? 'force-cache' : 'default'
+                          })
+                          .then(response => {
+                            if (response.ok) {
+                              console.log(`链接成功: ${currentUrl}`);
+                              requestCache.set(currentUrl, {
+                                data: response.clone(),
+                                timestamp: Date.now()
+                              });
+                              return response.text().then(text => {
+                                // 保存成功的数据到localStorage作为缓存
+                                try {
+                                    localStorage.setItem('minecraft_server_cache', text);
+                                    localStorage.setItem('minecraft_server_cache_timestamp', Date.now().toString());
+                                } catch (e) {
+                                    console.warn('保存到localStorage失败:', e);
+                                }
+                                
+                                try {
+                                    processData(text);
+                                } catch (processError) {
+                                    console.error('处理processData时出错:', processError);
+                                    // 即使处理数据出错，仍尝试处理Minecraft数据
+                                    try {
+                                        // 处理错误已由stats-counter.js中的loadGitHubStats函数处理
+                                        console.warn('processData处理失败，将由loadGitHubStats处理');
+                                    } catch (minecraftProcessError) {
+                                        console.error('处理Minecraft数据时出错:', minecraftProcessError);
+                                        // 处理函数失败，尝试下一个链接
+                                        tryNextUrl(remainingUrls, retryCount);
+                                    }
+                                }
+                              });
+                            } else {
+                                console.warn(`HTTP ${response.status}: ${currentUrl}`);
+                                recordError(currentUrl, new Error(`HTTP ${response.status}`));
+                                // HTTP错误也继续尝试下一个链接
+                                tryNextUrl(remainingUrls, retryCount);
+                            }
+                        })
+                        .catch(error => {
+                            console.warn(`链接失败: ${currentUrl}, 错误: ${error.message}`);
+                            recordError(currentUrl, error);
+                            // 网络错误也继续尝试下一个链接
+                            tryNextUrl(remainingUrls, retryCount);
+                        }),
+                    timeoutPromise
+                ]).catch(error => {
+                    console.warn(`链接超时: ${currentUrl}, 错误: ${error.message}`);
+                    recordError(currentUrl, error);
+                    // 超时也继续尝试下一个链接
+                    tryNextUrl(remainingUrls, retryCount);
+                });
+            }
+            
+            // 设置全局的错误捕获，确保Promise不会静默失败
+            window.addEventListener('unhandledrejection', event => {
+                console.error('未处理的Promise拒绝:', event.reason);
+                // 可以在这里添加额外的错误报告逻辑
+            });
+            
+            // 立即开始尝试所有高优先级链接
+            tryNextUrl(priorityUrls);
+        }
+        
+        // 定义GitHub链接列表
+        const GITHUB_URLS = [
+            // 加速链接优先级最高
+            'https://ghfast.top/https://raw.githubusercontent.com/Menghuibanxian/Minecraft/refs/heads/main/Minecraft.txt',
+            // 原始GitHub链接作为备用
+            'https://raw.githubusercontent.com/Menghuibanxian/Minecraft/refs/heads/main/Minecraft.txt'
+        ];
+
+        // 公告功能
+        function loadAnnouncement() {
+            // GitHub原始链接和加速链接列表
+            const githubUrls = GITHUB_URLS;
+            
+            // 返回一个Promise，以便调用者可以获取到数据
+            return new Promise(function(resolve, reject) {
+                // 保存原始的processData函数，以便获取数据后resolve
+                const originalProcessData = window.processData;
+                
+                // 临时修改processData函数以捕获数据
+                window.processData = function(data) {
+                    // 恢复原始的processData函数
+                    window.processData = originalProcessData;
+                    // 调用原始函数处理数据
+                    if (originalProcessData) {
+                        originalProcessData(data);
+                    }
+                    // resolve Promise返回数据
+                    resolve(data);
+                };
+                
+                // 使用串行方式测试所有链接，确保主链接加载不成功时能使用备用链接
+                testUrlsAndFetchSequentially(githubUrls);
+            });
+        }
+        
+        // 确保GitHub链接在页面加载的最早期就开始加载
+        // 高优先级加载GitHub内容，因为它只有1kb且数据重要
+        (function() {
+            // 立即尝试加载，不等待DOMContentLoaded
+            try {
+                console.log('页面脚本加载，立即开始加载GitHub链接...');
+                loadAnnouncement().then(function(githubData) {
+                    // 将获取到的数据传递给stats-counter.js中的loadGitHubStats函数
+                    if (typeof loadGitHubStats === 'function') {
+                        loadGitHubStats(githubData);
+                    }
+                }).catch(function(error) {
+                    console.error('立即加载GitHub链接失败:', error);
+                    // 降级方案：使用DOMContentLoaded
+                    try {
+                        document.addEventListener('DOMContentLoaded', function() {
+                            console.log('DOM加载完成，重试加载GitHub链接...');
+                            loadAnnouncement().then(function(githubData) {
+                                if (typeof loadGitHubStats === 'function') {
+                                    loadGitHubStats(githubData);
+                                }
+                            });
+                        });
+                    } catch (fallbackError) {
+                        console.error('所有加载方式失败，将使用默认信息');
+                        if (typeof loadGitHubStats === 'function') {
+                            loadGitHubStats();
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('立即加载GitHub链接失败:', error);
+                // 降级方案：使用DOMContentLoaded
+                try {
+                    document.addEventListener('DOMContentLoaded', function() {
+                        console.log('DOM加载完成，重试加载GitHub链接...');
+                        loadAnnouncement().then(function(githubData) {
+                            if (typeof loadGitHubStats === 'function') {
+                                loadGitHubStats(githubData);
+                            }
+                        });
+                    });
+                } catch (fallbackError) {
+                    console.error('所有加载方式失败，将使用默认信息');
+                    if (typeof loadGitHubStats === 'function') {
+                        loadGitHubStats();
+                    }
+                }
+            }
+        })();
+        
+        // 已移除未使用的testUrlsAndFetch函数，现在使用testUrlsAndFetchSequentially函数
+        
+        // 注：processData函数已在announcement-fix.js中重写，以保留公告中的空格和回车
+        // 此文件中的原始函数已移除，因为它实际上不会被调用
+        
+        // 已移除重复的processMinecraftData函数，统计数据处理由stats-counter.js统一负责
+        
+        // 加载默认服务器信息
+        function loadDefaultServerInfo() {
+            const defaultServers = [
+                '敬请期待',
+                '敬请期待',
+                '敬请期待'
+            ];
+            loadServerInfo(defaultServers);
+        }
+        
+        // 关闭公告函数（确保总是能正常工作）
+        function closeAnnouncement() {
+            try {
+                const modal = document.getElementById('announcement-modal');
+                if (modal) {
+                    modal.classList.add('hidden');
+                    // 确保元素被完全隐藏
+                    modal.style.display = 'none';
+                }
+            } catch (error) {
+                console.error('关闭公告模态框时出错:', error);
+                // 备用方案：直接隐藏元素
+                const backupModal = document.getElementById('announcement-modal');
+                if (backupModal) {
+                    backupModal.style.display = 'none';
+                }
+            }
+        }
+        
+        
+        
+        // "我看不见这个按钮"点击事件处理函数
+        function handleInvisibleButtonClick() {
+            try {
+                // 直接执行毒蘑菇性能测试的start()函数
+                startMushroomTest();
+            } catch (error) {
+                console.error('执行测试时出错:', error);
+            }
+        }
+
+        // 毒蘑菇性能测试相关变量
+        var cx, cy;
+        var glposition;
+        var glright;
+        var glforward;
+        var glup;
+        var glorigin;
+        var glx;
+        var gly;
+        var gllen;
+        var canvas;
+        var gl;
+        var date = new Date();
+        var md = 0,mx,my;
+        var t2,t1 = date.getTime();
+        var mx = 0, my = 0, mx1 = 0, my1 = 0, lasttimen = 0;
+        var ml = 0, mr = 0, mm = 0;
+        var len = 1.6;
+        var ang1 = 2.8;
+        var ang2 = 0.4;
+        var cenx = 0.0;
+        var ceny = 0.0;
+        var cenz = 0.0;
+
+        var KERNEL = "float kernal(vec3 ver){\n" +
+            "   vec3 a;\n" +
+            "float b,c,d,e;\n" +
+            "   a=ver;\n" +
+            "   for(int i=0;i<5;i++){\n" +
+            "       b=length(a);\n" +
+            "       c=atan(a.y,a.x)*8.0;\n" +
+            "       e=1.0/b;\n" +
+            "       d=acos(a.z/b)*8.0;\n" +
+            "       b=pow(b,8.0);\n" +
+            "       a=vec3(b*sin(d)*cos(c),b*sin(d)*sin(c),b*cos(d))+ver;\n" +
+            "       if(b>6.0){\n" +
+            "           break;\n" +
+            "       }\n" +
+            "   }" +
+            "   return 4.0-a.x*a.x-a.y*a.y-a.z*a.z;" +
+            "}";
+
+        var vertshade;
+        var fragshader;
+        var shaderProgram;
+
+        // 初始化毒蘑菇性能测试UI
+        function initMushroomTestUI() {
+            // 创建毒蘑菇测试界面
+            var mushroomContainer = document.createElement('div');
+            mushroomContainer.id = 'mushroom-test-container';
+            mushroomContainer.style.display = 'none';
+            mushroomContainer.style.position = 'fixed';
+            mushroomContainer.style.top = '0';
+            mushroomContainer.style.left = '0';
+            mushroomContainer.style.width = '100%';
+            mushroomContainer.style.height = '100%';
+            mushroomContainer.style.backgroundColor = 'white';
+            mushroomContainer.style.zIndex = '1001';
+            mushroomContainer.style.overflow = 'hidden';
+            
+            mushroomContainer.innerHTML = `
+                <div id="guide">
+                    <div>
+                        <img src="static/picture/favicon.png" title="毒蘑菇性能测试" style="max-width: 180px;">
+                        <h1>毒蘑菇性能测试</h1>
+                        <p>⚠ 警告：在性能较弱的设备（如手机）上启动测试可能导致系统卡死、发烫！</p>
+                        <button id="btn-start" onclick="startMushroomTest()">我已了解，开始测试</button>
+                        <a href="javascript:startMushroomTest()" style="position: fixed;
+                    bottom: 10px;
+                    left: 0;
+                    right: 0;">© 蔡徐坤</a>
+                    
+                        <div style="display: none">
+                            作者：蔡徐坤
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="main">
+                    <canvas id="c1" width="1024" height="1024">
+                        <span>当前浏览器不支持该功能</span>
+                    </canvas>
+                </div>
+                <button onclick="closeMushroomTest()" style="left: 0">关闭</button>
+                <button id="btn">设置</button>
+                <div id="config">
+                    <textarea name="" id="kernel" cols="30" rows="10"></textarea>
+                    <br />
+                    <button id="apply">应用</button>
+                    <button id="cancle">重置</button>
+                </div>
+            `;
+            
+            document.body.appendChild(mushroomContainer);
+        }
+
+        // 关闭毒蘑菇性能测试并释放资源
+        function closeMushroomTest() {
+            // 停止渲染循环
+            if (animationFrameId) {
+                window.cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+            mushroomTestActive = false;
+            
+            // 释放WebGL资源
+            if (gl && shaderProgram) {
+                try {
+                    gl.useProgram(null);
+                    gl.deleteProgram(shaderProgram);
+                    gl.deleteShader(vertshader);
+                    gl.deleteShader(fragshader);
+                    gl = null;
+                    shaderProgram = null;
+                    vertshader = null;
+                    fragshader = null;
+                } catch (error) {
+                    console.error('释放WebGL资源时出错:', error);
+                }
+            }
+            
+            // 隐藏测试容器
+            var container = document.getElementById('mushroom-test-container');
+            if (container) {
+                container.style.display = 'none';
+            }
+            
+            // 恢复原始页面的滚动
+            document.body.style.overflow = 'auto';
+            
+            console.log('毒蘑菇性能测试已关闭，资源已释放');
+        }
+
+        // 开始毒蘑菇性能测试
+        function startMushroomTest() {
+            // 确保之前的测试已经完全停止
+            closeMushroomTest();
+            
+            var container = document.getElementById('mushroom-test-container');
+            if (!container) {
+                initMushroomTestUI();
+                container = document.getElementById('mushroom-test-container');
+            }
+            
+            container.style.display = 'block';
+            
+            // 隐藏原始页面的公告模态框
+            var announcementModal = document.getElementById('announcement-modal');
+            if (announcementModal) {
+                announcementModal.classList.add('hidden');
+            }
+            
+            // 防止页面滚动
+            document.body.style.overflow = 'hidden';
+            
+            // 移除引导界面
+            var element = document.getElementById("guide");
+            if (element) {
+                element.parentNode.removeChild(element);
+            }
+            
+            setTimeout(function() {
+                bindMushroomEvent();
+                initMushroom();
+            }, 100);
+        }
+
+        // 全局变量用于控制渲染循环
+        var animationFrameId = null;
+        var mushroomTestActive = false;
+
+        function ontimer() {
+            if (!mushroomTestActive) return;
+            
+            ang1 += 0.01;
+            draw();
+            animationFrameId = window.requestAnimationFrame(ontimer);
+        }
+
+        function draw() {
+            date = new Date();
+            var t2 = date.getTime();
+            t1 = t2;
+            gl.uniform1f(glx, cx * 2.0 / (cx + cy));
+            gl.uniform1f(gly, cy * 2.0 / (cx + cy));
+            gl.uniform1f(gllen, len);
+            gl.uniform3f(glorigin, len * Math.cos(ang1) * Math.cos(ang2) + cenx, len * Math.sin(ang2) + ceny, len * Math.sin(ang1) * Math.cos(ang2) + cenz);
+            gl.uniform3f(glright, Math.sin(ang1), 0, -Math.cos(ang1));
+            gl.uniform3f(glup, -Math.sin(ang2) * Math.cos(ang1), Math.cos(ang2), -Math.sin(ang2) * Math.sin(ang1));
+            gl.uniform3f(glforward, -Math.cos(ang1) * Math.cos(ang2), -Math.sin(ang2), -Math.sin(ang1) * Math.cos(ang2));
+            gl.drawArrays(gl.TRIANGLES, 0, 6);
+            gl.finish();
+        }
+
+        function resize() {
+            cx = document.body.clientWidth;
+            cy = document.body.clientHeight;
+            if(cx>cy){
+                cx=cy;
+            }
+            else{
+                cy=cx;
+            }
+            document.getElementById("main").style.width=1024+"px";
+            document.getElementById("main").style.height=1024+"px";
+            document.getElementById("main").style.transform="scale("+cx/1024+","+cy/1024+")";
+        }
+
+        function bindMushroomEvent() {
+            document.addEventListener("mousedown",
+                function (ev) {
+                    var oEvent = ev || event;
+                    if (oEvent.button == 0) {
+                        ml = 1;
+                        mm = 0;
+                    }
+                    if (oEvent.button == 2) {
+                        mr = 1;
+                        mm = 0;
+                    }
+                    mx = oEvent.clientX;
+                    my = oEvent.clientY;
+                },
+                false);
+            document.addEventListener("mouseup",
+                function (ev) {
+                    var oEvent = ev || event;
+                    if (oEvent.button == 0) {
+                        ml = 0;
+                    }
+                    if (oEvent.button == 2) {
+                        mr = 0;
+                    }
+                },
+                false);
+            document.addEventListener("mousemove",
+                function (ev) {
+                var oEvent = ev || event;
+                if (ml == 1) {
+                    ang1 += (oEvent.clientX - mx) * 0.002;
+                    ang2 += (oEvent.clientY - my) * 0.002;
+                    if (oEvent.clientX != mx || oEvent.clientY != my) {
+                        mm = 1;
+                    }
+                }
+                if (mr == 1) {
+                    var l = len * 4.0 / (cx + cy);
+                    cenx += l * (-(oEvent.clientX - mx) * Math.sin(ang1) - (oEvent.clientY - my) * Math.sin(ang2) * Math.cos(ang1));
+                    ceny += l * ((oEvent.clientY - my) * Math.cos(ang2));
+                    cenz += l * ((oEvent.clientX - mx) * Math.cos(ang1) - (oEvent.clientY - my) * Math.sin(ang2) * Math.sin(ang1));
+                    if (oEvent.clientX != mx || oEvent.clientY != my) {
+                        mm = 1;
+                    }
+                }
+                mx = oEvent.clientX;
+                my = oEvent.clientY;
+                },
+                false);
+            document.addEventListener("mousewheel",
+                function (ev) {
+                    ev.preventDefault();
+                    var oEvent = ev || event;
+                    len *= Math.exp(-0.001 * oEvent.wheelDelta);
+                },
+                false);
+            document.addEventListener("touchstart",
+                function (ev) {
+                    var n = ev.touches.length;
+                    if (n == 1) {
+                        var oEvent = ev.touches[0];
+                        mx = oEvent.clientX;
+                        my = oEvent.clientY;
+                    }
+                    else if (n == 2) {
+                        var oEvent = ev.touches[0];
+                        mx = oEvent.clientX;
+                        my = oEvent.clientY;
+                        oEvent = ev.touches[1];
+                        mx1 = oEvent.clientX;
+                        my1 = oEvent.clientY;
+                    }
+                    lasttimen = n;
+                },
+                false);
+            document.addEventListener("touchend",
+                function (ev) {
+                    var n = ev.touches.length;
+                    if (n == 1) {
+                        var oEvent = ev.touches[0];
+                        mx = oEvent.clientX;
+                        my = oEvent.clientY;
+                    }
+                    else if (n == 2) {
+                        var oEvent = ev.touches[0];
+                        mx = oEvent.clientX;
+                        my = oEvent.clientY;
+                        oEvent = ev.touches[1];
+                        mx1 = oEvent.clientX;
+                        my1 = oEvent.clientY;
+                    }
+                    lasttimen = n;
+                },
+                false);
+            document.addEventListener("touchmove",
+                function (ev) {
+                    ev.preventDefault();
+                    var n = ev.touches.length;
+                    if (n == 1&&lasttimen==1) {
+                        var oEvent = ev.touches[0];
+                        ang1 += (oEvent.clientX - mx) * 0.002;
+                        ang2 += (oEvent.clientY - my) * 0.002;
+                        mx = oEvent.clientX;
+                        my = oEvent.clientY;
+                    }
+                    else if (n == 2) {
+                        var oEvent = ev.touches[0];
+                        var oEvent1 = ev.touches[1];
+                        var l = len * 2.0 / (cx + cy), l1;
+                        cenx += l * (-(oEvent.clientX + oEvent1.clientX - mx - mx1) * Math.sin(ang1) - (oEvent.clientY + oEvent1.clientY - my - my1) * Math.sin(ang2) * Math.cos(ang1));
+                        ceny += l * ((oEvent.clientY + oEvent1.clientY - my - my1) * Math.cos(ang2));
+                        cenz += l * ((oEvent.clientX + oEvent1.clientX - mx - mx1) * Math.cos(ang1) - (oEvent.clientY + oEvent1.clientY - my - my1) * Math.sin(ang2) * Math.sin(ang1));
+                        l1 = Math.sqrt((mx - mx1) * (mx - mx1) + (my - my1) * (my - my1)+1.0);
+                        mx = oEvent.clientX;
+                        my = oEvent.clientY;
+                        mx1 = oEvent1.clientX;
+                        my1 = oEvent1.clientY;
+                        l = Math.sqrt((mx - mx1) * (mx - mx1) + (my - my1) * (my - my1) + 1.0);
+                        len *= l1 / l;
+                    }
+                    lasttimen = n;
+                },
+                false);
+
+            
+            window.onresize = function () {
+                resize();
+            }
+        }
+
+        function initMushroom() {
+            resize();
+            
+            var positions = [-1.0, -1.0, 0.0, 1.0, -1.0, 0.0, 1.0, 1.0, 0.0, -1.0, -1.0, 0.0, 1.0, 1.0, 0.0, -1.0, 1.0, 0.0];
+            var VSHADER_SOURCE =
+                "#version 100 \n"+
+                "precision highp float;\n" +
+                "attribute vec4 position;" +
+                "varying vec3 dir, localdir;" +
+                "uniform vec3 right, forward, up, origin;" +
+                "uniform float x,y;" +
+                "void main() {" +
+                "   gl_Position = position; " +
+                "   dir = forward + right * position.x*x + up * position.y*y;" +
+                "   localdir.x = position.x*x;" +
+                "   localdir.y = position.y*y;" +
+                "   localdir.z = -1.0;" +
+                "}";
+            var FSHADER_SOURCE =
+                "#version 100 \n" +
+                "#define PI 3.14159265358979324\n" +
+                "#define M_L 0.3819660113\n" +
+                "#define M_R 0.6180339887\n" +
+                "#define MAXR 8\n" +
+                "#define SOLVER 8\n" +
+                "precision highp float;\n" +
+                "float kernal(vec3 ver)\n;" +
+                "uniform vec3 right, forward, up, origin;\n" +
+                "varying vec3 dir, localdir;\n" +
+                "uniform float len;\n" +
+                "vec3 ver;\n" +
+                "int sign;"+
+                "float v, v1, v2;\n" +
+                "float r1, r2, r3, r4, m1, m2, m3, m4;\n" +
+                "vec3 n, reflect;\n" +
+                "const float step = 0.002;\n" +
+                "vec3 color;\n" +
+                "void main() {\n" +
+                "   color.r=0.0;\n" +
+                "   color.g=0.0;\n" +
+                "   color.b=0.0;\n" +
+                "   sign=0;"+
+                "   v1 = kernal(origin + dir * (step*len));\n" +
+                "   v2 = kernal(origin);\n" +
+                "   for (int k = 2; k < 1002; k++) {\n" +
+                "      ver = origin + dir * (step*len*float(k));\n" +
+                "      v = kernal(ver);\n" +
+                "      if (v > 0.0 && v1 < 0.0) {\n" +
+                "         r1 = step * len*float(k - 1);\n" +
+                "         r2 = step * len*float(k);\n" +
+                "         m1 = kernal(origin + dir * r1);\n" +
+                "         m2 = kernal(origin + dir * r2);\n" +
+                "         for (int l = 0; l < SOLVER; l++) {\n" +
+                "            r3 = r1 * 0.5 + r2 * 0.5;\n" +
+                "            m3 = kernal(origin + dir * r3);\n" +
+                "            m3 = kernal(origin + dir * r3);\n" +
+                "            if (m3 > 0.0) {\n" +
+                "               r2 = r3;\n" +
+                "               m2 = m3;\n" +
+                "            }\n" +
+                "            else {\n" +
+                "               r1 = r3;\n" +
+                "               m1 = m3;\n" +
+                "            }\n" +
+                "         }\n" +
+                "         if (r3 < 2.0 * len) {\n" +
+                "               sign=1;" +
+                "            break;\n" +
+                "         }\n" +
+                "      }\n" +
+                "      if (v < v1&&v1>v2&&v1 < 0.0 && (v1*2.0 > v || v1 * 2.0 > v2)) {\n" +
+                "         r1 = step * len*float(k - 2);\n" +
+                "         r2 = step * len*(float(k) - 2.0 + 2.0*M_L);\n" +
+                "         r3 = step * len*(float(k) - 2.0 + 2.0*M_R);\n" +
+                "         r4 = step * len*float(k);\n" +
+                "         m2 = kernal(origin + dir * r2);\n" +
+                "         m3 = kernal(origin + dir * r3);\n" +
+                "         for (int l = 0; l < MAXR; l++) {\n" +
+                "            if (m2 > m3) {\n" +
+                "               r4 = r3;\n" +
+                "               r3 = r2;\n" +
+                "               r2 = r4 * M_L + r1 * M_R;\n" +
+                "               m3 = m2;\n" +
+                "               m2 = kernal(origin + dir * r2);\n" +
+                "            }\n" +
+                "            else {\n" +
+                "               r1 = r2;\n" +
+                "               r2 = r3;\n" +
+                "               r3 = r4 * M_R + r1 * M_L;\n" +
+                "               m2 = m3;\n" +
+                "               m3 = kernal(origin + dir * r3);\n" +
+                "            }\n" +
+                "         }\n" +
+                "         if (m2 > 0.0) {\n" +
+                "            r1 = step * len*float(k - 2);\n" +
+                "            r2 = r2;\n" +
+                "            m1 = kernal(origin + dir * r1);\n" +
+                "            m2 = kernal(origin + dir * r2);\n" +
+                "            for (int l = 0; l < SOLVER; l++) {\n" +
+                "               r3 = r1 * 0.5 + r2 * 0.5;\n" +
+                "               m3 = kernal(origin + dir * r3);\n" +
+                "               if (m3 > 0.0) {\n" +
+                "                  r2 = r3;\n" +
+                "                  m2 = m3;\n" +
+                "               }\n" +
+                "               else {\n" +
+                "                  r1 = r3;\n" +
+                "                  m1 = m3;\n" +
+                "               }\n" +
+                "            }\n" +
+                "            if (r3 < 2.0 * len&&r3> step*len) {\n" +
+                "                   sign=1;" +
+                "               break;\n" +
+                "            }\n" +
+                "         }\n" +
+                "         else if (m3 > 0.0) {\n" +
+                "            r1 = step * len*float(k - 2);\n" +
+                "            r2 = r3;\n" +
+                "            m1 = kernal(origin + dir * r1);\n" +
+                "            m2 = kernal(origin + dir * r2);\n" +
+                "            for (int l = 0; l < SOLVER; l++) {\n" +
+                "               r3 = r1 * 0.5 + r2 * 0.5;\n" +
+                "               m3 = kernal(origin + dir * r3);\n" +
+                "               if (m3 > 0.0) {\n" +
+                "                  r2 = r3;\n" +
+                "                  m2 = m3;\n" +
+                "               }\n" +
+                "               else {\n" +
+                "                  r1 = r3;\n" +
+                "                  m1 = m3;\n" +
+                "               }\n" +
+                "            }\n" +
+                "            if (r3 < 2.0 * len&&r3> step*len) {\n" +
+                "                   sign=1;" +
+                "               break;\n" +
+                "            }\n" +
+                "         }\n" +
+                "      }\n" +
+                "      v2 = v1;\n" +
+                "      v1 = v;\n" +
+                "   }\n" +
+                "   if (sign==1) {\n" +
+                "      ver = origin + dir*r3 ;\n" +
+                "       r1=ver.x*ver.x+ver.y*ver.y+ver.z*ver.z;" +
+                "      n.x = kernal(ver - right * (r3*0.00025)) - kernal(ver + right * (r3*0.00025));\n" +
+                "      n.y = kernal(ver - up * (r3*0.00025)) - kernal(ver + up * (r3*0.00025));\n" +
+                "      n.z = kernal(ver + forward * (r3*0.00025)) - kernal(ver - forward * (r3*0.00025));\n" +
+                "      r3 = n.x*n.x+n.y*n.y+n.z*n.z;\n" +
+                "      n = n * (1.0 / sqrt(r3));\n" +
+                "      ver = localdir;\n" +
+                "      r3 = ver.x*ver.x+ver.y*ver.y+ver.z*ver.z;\n" +
+                "      ver = ver * (1.0 / sqrt(r3));\n" +
+                "      reflect = n * (-2.0*dot(ver, n)) + ver;\n" +
+                "      r3 = reflect.x*0.276+reflect.y*0.920+reflect.z*0.276;\n" +
+                "      r4 = n.x*0.276+n.y*0.920+n.z*0.276;\n" +
+                "      r3 = max(0.0,r3);\n" +
+                "      r3 = r3 * r3*r3*r3;\n" +
+                "      r3 = r3 * 0.45 + r4 * 0.25 + 0.3;\n" +
+                "      n.x = sin(r1*10.0)*0.5+0.5;\n" +
+                "      n.y = sin(r1*10.0+2.05)*0.5+0.5;\n" +
+                "      n.z = sin(r1*10.0-2.05)*0.5+0.5;\n" +
+                "      color = n*r3;\n" +
+                "   }\n" +
+                "   gl_FragColor = vec4(color.x, color.y, color.z, 1.0);" +
+                "}";
+            canvas = document.getElementById('c1');
+            // 检查canvas是否存在
+            if (!canvas) {
+                console.error('WebGL canvas元素未找到');
+                return;
+            }
+            
+            // 尝试获取WebGL上下文，并添加错误处理
+            gl = canvas.getContext('webgl');
+            if (!gl) {
+                // 尝试使用实验性WebGL
+                gl = canvas.getContext('experimental-webgl');
+                if (!gl) {
+                    console.error('您的浏览器不支持WebGL');
+                    return;
+                }
+            }
+            
+            // 创建着色器
+            vertshader = gl.createShader(gl.VERTEX_SHADER);
+            fragshader = gl.createShader(gl.FRAGMENT_SHADER);
+            shaderProgram = gl.createProgram();
+            
+            // 检查着色器和程序对象创建是否成功
+            if (!vertshader || !fragshader || !shaderProgram) {
+                console.error('创建WebGL对象失败');
+                return;
+            }
+            
+            // 编译顶点着色器
+            gl.shaderSource(vertshader, VSHADER_SOURCE);
+            gl.compileShader(vertshader);
+            var infov = gl.getShaderInfoLog(vertshader);
+            // 检查顶点着色器编译状态
+            if (!gl.getShaderParameter(vertshader, gl.COMPILE_STATUS)) {
+                console.error('顶点着色器编译失败:', infov);
+                return;
+            } else if (infov) {
+                console.warn('顶点着色器警告:', infov);
+            }
+            
+            // 编译片段着色器
+            gl.shaderSource(fragshader, FSHADER_SOURCE + KERNEL);
+            gl.compileShader(fragshader);
+            var infof = gl.getShaderInfoLog(fragshader);
+            // 检查片段着色器编译状态
+            if (!gl.getShaderParameter(fragshader, gl.COMPILE_STATUS)) {
+                console.error('片段着色器编译失败:', infof);
+                return;
+            } else if (infof) {
+                console.warn('片段着色器警告:', infof);
+            }
+            
+            // 附加着色器并链接程序
+            gl.attachShader(shaderProgram, vertshader);
+            gl.attachShader(shaderProgram, fragshader);
+            gl.linkProgram(shaderProgram);
+            
+            // 检查链接状态
+            if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+                var info = gl.getProgramInfoLog(shaderProgram);
+                console.error('WebGL程序链接失败:', info);
+                return;
+            }
+            
+            // 使用程序
+            gl.useProgram(shaderProgram);
+            // 获取属性和uniform位置，并添加错误检查
+            glposition = gl.getAttribLocation(shaderProgram, 'position');
+            if (glposition === -1) {
+                console.warn('无法获取position属性位置');
+            }
+            
+            glright = gl.getUniformLocation(shaderProgram, 'right');
+            glforward = gl.getUniformLocation(shaderProgram, 'forward');
+            glup = gl.getUniformLocation(shaderProgram, 'up');
+            glorigin = gl.getUniformLocation(shaderProgram, 'origin');
+            glx = gl.getUniformLocation(shaderProgram, 'x');
+            gly = gl.getUniformLocation(shaderProgram, 'y');
+            gllen = gl.getUniformLocation(shaderProgram, 'len');
+            
+            // 检查uniform位置
+            const uniformLocations = [glright, glforward, glup, glorigin, glx, gly, gllen];
+            const uniformNames = ['right', 'forward', 'up', 'origin', 'x', 'y', 'len'];
+            uniformLocations.forEach((location, index) => {
+                if (!location) {
+                    console.warn(`无法获取${uniformNames[index]} uniform位置`);
+                }
+            });
+            var buffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+            gl.vertexAttribPointer(glposition, 3, gl.FLOAT, false, 0, 0);
+            gl.enableVertexAttribArray(glposition);
+
+            gl.viewport(0, 0, 1024, 1024);
+            mushroomTestActive = true;
+            draw();
+            animationFrameId = window.requestAnimationFrame(ontimer);
+            document.getElementById("kernel").value = KERNEL;
+            document.getElementById("btn").addEventListener("click", function() {
+                var state = this.innerText == "设置";
+                this.innerText = state ? "关闭" : "设置";
+                document.getElementById("config").style.display = state ? "inline" : "none";
+            });
+            document.getElementById("apply").addEventListener("click", function() {
+                KERNEL = document.getElementById("kernel").value;
+                gl.shaderSource(fragshader, FSHADER_SOURCE + KERNEL);
+                gl.compileShader(fragshader);
+                var infof = gl.getShaderInfoLog(fragshader);
+                gl.linkProgram(shaderProgram);
+                gl.useProgram(shaderProgram);
+                if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+                    var info = gl.getProgramInfoLog(shaderProgram);
+                    alert(infof + info);
+                }
+                glposition = gl.getAttribLocation(shaderProgram, 'position');
+                glright = gl.getUniformLocation(shaderProgram, 'right');
+                glforward = gl.getUniformLocation(shaderProgram, 'forward');
+                glup = gl.getUniformLocation(shaderProgram, 'up');
+                glorigin = gl.getUniformLocation(shaderProgram, 'origin');
+                glx = gl.getUniformLocation(shaderProgram, 'x');
+                gly = gl.getUniformLocation(shaderProgram, 'y');
+                gllen = gl.getUniformLocation(shaderProgram, 'len');
+            });
+            document.getElementById("cancle").addEventListener("click", function() {
+                document.getElementById("kernel").value = KERNEL;
+            });
+        }
+        
+
+        
+
+
+        // 已移除旧的DOMContentLoaded监听器，因为已添加了更优先级的立即执行函数
+        // GitHub链接现在在页面脚本加载时就开始加载，无需等待DOMContentLoaded
+
+        // 禁用浏览器自动滚动还原
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        // 刷新或离开前强制滚动到顶部
+        window.onbeforeunload = function() {
+            window.scrollTo(0, 0);
+        };
+        // 延迟加载非关键脚本
+    window.addEventListener('load', function() {
+        import('./static/js/main-async.js');
+    });
+
+        // 监听滚动事件，当滚动到接近页面底部时隐藏悬浮窗
+        window.addEventListener('scroll', function() {
+            const musicPlayer = document.getElementById('musicPlayer');
+            const backToTop = document.getElementById('backToTop');
+            const playlistModal = document.getElementById('playlistModal');
+
+            if (musicPlayer && backToTop) {
+                // 获取页面底部可视区域距离
+                const windowHeight = window.innerHeight;
+                const scrollY = window.scrollY;
+                const documentHeight = document.documentElement.scrollHeight;
+
+                // 计算到页面底部的距离
+                const distanceToBottom = documentHeight - (scrollY + windowHeight);
+                
+                // 设置一个阈值，当距离页面底部33px以内时隐藏悬浮窗
+                const threshold = 33;
+                
+                // 检测是否为移动设备（通过窗口宽度判断）
+                const isMobile = window.innerWidth < 768;
+                
+                if (distanceToBottom < threshold) {
+                    // 电脑端：隐藏音乐悬浮窗，但显示返回顶部按钮
+                    // 手机端：全隐藏
+                    musicPlayer.style.display = 'none';
+                    
+                    if (isMobile) {
+                        // 手机端隐藏返回顶部按钮
+                        backToTop.style.display = 'none';
+                    } else {
+                        // 电脑端显示返回顶部按钮
+                        backToTop.style.display = 'flex';
+                    }
+                    
+                    if (playlistModal) {
+                        playlistModal.style.display = 'none';
+                    }
+                } else {
+                    // 显示悬浮窗
+                    musicPlayer.style.display = 'flex';
+                    // 只有在页面向下滚动一定距离后才显示返回顶部按钮
+                    if (scrollY > 10) {
+                        backToTop.style.display = 'flex';
+                    }
+                }
+            }
+        });
+    </script>
+    
+    <!-- 优先加载的统计数据脚本 -->
+    <script defer src="static/js/stats-counter.js"></script>
+    <!-- 公告空格和回车修复脚本 -->
+    <script src="static/js/announcement-fix.js"></script>
+    <!-- 主要的异步JavaScript代码 -->
+    <script defer src="static/js/main-async.js"></script>
+</body>
+</html>
