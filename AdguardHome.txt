@@ -253,4 +253,133 @@
 @@||icloud.com^
 @@||mzstatic.com^
 #------------------------------#------------------------------#------------------------------
+! --- 来自 放行白名单.prop ---
+! 小米云备份/服务
+@@||api.sec.miui.com^
+@@||a0.app.xiaomi.com^
+@@||globalapi.ad.xiaomi.com^
+@@||api.ad.xiaomi.com^
+! 小爱同学
+@@||tracker.ai.xiaomi.com^
+! 淘宝
+@@||s.click.taobao.com^
+@@||acs.m.taobao.com^
+@@||click.simba.taobao.com^
+@@||amdc.m.taobao.com^
+! 小米金融
+@@||api.jr.mi.com^
+
+! --- 来自 广告奖励.prop (腾讯/QQ/微信) ---
+@@||c2.gdt.qq.com^
+@@||d.gdt.qq.com^
+@@||gw.365you.com^
+@@||h5.gdt.qq.com^
+@@||i.gdt.qq.com^
+@@||ii.gdt.qq.com^
+@@||ipv4.gdt.qq.com^
+@@||m.gdt.qq.com^
+@@||mi.gdt.qq.com^
+@@||nc.gdt.qq.com^
+@@||pgdt.gtimg.cn^
+@@||pgdt.ugdtimg.com^
+@@||pv.sohu.com^
+@@||q.i.gdt.qq.com^
+@@||rm.gdt.qq.com^
+@@||sdk.e.qq.com^
+@@||t.gdt.qq.com^
+@@||tangram.e.qq.com^
+@@||v2.gdt.qq.com^
+@@||v3.gdt.qq.com^
+@@||v6ii.gdt.qq.com^
+@@||vr.gdt.qq.com^
+@@||x.adnet.qq.com^
+@@||xc.gdt.qq.com^
+@@||win.gdt.qq.com^
+! 微信广告/小程序奖励
+@@||wxsnsad.tc.qq.com^
+@@||wxsnsdy.tc.qq.com^
+@@||wxsnsdy.video.qq.com^
+@@||wxsnsdy.wxs.qq.com^
+@@||wxsnsdythumb.wxs.qq.com^
+@@||wxa.wxs.qq.com^
+@@||wximg.wxs.qq.com^
+@@||wxsmw.wxs.qq.com^
+! 百度云视频
+@@||nadvideo.baidu.com^
+@@||nadvideo2.baidu.com^
+! 快手支持 (开屏/激励)
+@@||open.e.kuaishou.com^
+@@||e.kuaishou.com^
+@@||api2.e.kuaishou.com^
+@@||api.e.kuaishou.com^
+! 穿山甲 (APP分享)
+@@||log-api.pangolin-sdk-toutiao-b.com^
+@@||log-api.pangolin-sdk-toutiao.com^
+@@||api-access.pangolin-sdk-toutiao.com^
+@@||api-access.pangolin-sdk-toutiao-b.com^
+! QQ音乐免费时长
+@@||adstats.tencentmusic.com^
+@@||ad.tencentmusic.com^
+@@||adexpo.tencentmusic.com^
+@@||adcdn.tencentmusic.com^
+@@||adclick.tencentmusic.com^
+@@||adsmind.gdtimg.com^
+@@||rpt.gdt.qq.com^
+@@||v.gdt.qq.com^
+@@||c.gdt.qq.com^
+@@||tmead.y.qq.com^
+@@||tmeadcomm.y.qq.com^
+@@||tmeadbak.y.qq.com^
+@@||oth.eve.mdt.qq.com^
+@@||oth.str.mdt.qq.com^
+@@||oth.update.mdt.qq.com^
+@@||mtt.eve.mdt.qq.com^
+@@||mtt.str.mdt.qq.com^
+! Biubiu加速器
+@@||adx-bj.anythinktech.com^
+@@||adx-bj-req.anythinktech.com^
+@@||dc.sigmob.cn^
+@@||cn-api.anythinktech.com^
+@@||cn-tk.anythinktech.com^
+@@||tk.anythinktech.com^
+@@||adx.anythinktech.com^
+@@||v1-lm.adukwai.com^
+@@||v2-lm.adukwai.com^
+@@||v4-lm.adukwai.com^
+! 网易云听歌统计 (来自 README 更新)
+@@||clientlog.music.163.com^
+@@||clientlog3.music.163.com^
+! 百度广告 (来自 README 更新)
+@@||ecmb.bdimg.com^
+@@||ecma.bdimg.com^
+! Discord (来自 README 更新)
+@@||click.discord.com^
+
+! --- 来自 README.md 的手动拦截规则 ---
+! 京东相关
+||dsp-x.jd.com^
+||dsp-x.jd.com.gslb.qianxun.com^
+||m.jd.watbe.top^
+||m.jd.watbc.top^
+! OPPO 商店
+||api-cn.store.heytapmobi.com^
+||api-cn.theme.heytapmobi.com^
+! 蓝奏云
+||kl.67it.com^
+! 夸克/UC 劫持
+||download.uc.cn^
+! 快手广告SDK
+||w1.gskwai.com^
+||w2.gskwai.com^
+! 恶搞/特定拦截 (刺客边风)
+||black.qimo.ink^
+! 支付宝问题 (曾禁用)
+||pingjs.qq.com^
+! 华为天气开屏
+||acd.op.hicloud.com^
+! 其他
+||api.ad.xiaomi.com^
+||a0.app.xiaomi.com^
+
+#------------------------------#------------------------------#------------------------------
 
